@@ -1,0 +1,83 @@
+
+
+
+#catLowerBody{
+    width: 179px;
+    height: 124px;
+    background-color: #EEFF41;
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    position: relative;
+    bottom: 22px;
+    right: -4px;
+}
+#catLowerLowerBody{
+    width: 249px;
+    height: 119px;
+    background-color: #EEFF41;
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    position: relative;
+    bottom: 93px;
+    right: 29px;
+}
+#bodyShadow{
+    width: 144px;
+    height: 108px;
+    background-color: white;
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    position: relative;
+    bottom: 27px;
+    left: 50px;
+    opacity: 0.5;
+}
+.foot{
+    width: 55px;
+    height: 33px;
+    position: relative;
+    background: #EEFF41;
+    border-radius: 50%;
+}
+.foot1{
+    bottom: 108px;
+    right: -6px;
+}
+.foot2{
+    bottom: 137px;
+    left: 53px;
+}
+.foot3{
+    bottom: 172px;
+    left: 100px;
+}
+.foot4{
+    bottom: 208px;
+    left: 145px;
+}
+.nail{
+    background-color: white;
+    opacity: 0.5;
+    border-radius: 90% 0 90% 0;
+    position: absolute;
+    width: 26px;
+    height: 22px;
+    top: 6px;
+    left: 26px;
+}
+
+#catTail{
+    width: 157px;
+    background-color: #EEFF41;
+    border-radius: 90% 0 90% 0;
+    position: relative;
+    height: 82px;
+    bottom: 337px;
+    left: 180px;
+}
+#innerTail{
+    width: 122px;
+    background-color: white;
+    border-radius: 90% 0 90% 0;
+    opacity: 0.5;
+    position: absolute;
+    height: 80px;
+    left: 33px;
+}

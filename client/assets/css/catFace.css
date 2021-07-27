@@ -1,0 +1,160 @@
+#catFace{
+    background-color: #EEFF41;
+    border-radius: 50%;
+    width: 200px;
+    height: 168px;
+}
+#catEyes{
+    width: inherit;
+    height: 60px;
+    display: flex;
+    justify-content: space-evenly;
+    position: relative;
+    top: 40px;
+}
+.eyes{
+    width: 60px;
+    background-color: white;
+    height: inherit;
+    border-radius: 50%;
+    position: relative;
+}
+.pupils{
+    width: 40px;
+    height: 40px;
+    background-color: black;
+    border-radius: 50px;
+    position: absolute;
+    top: 12px;
+    left: 10px;
+}
+.smallPupils{
+    background-color: white;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    float: right;
+}
+.heart{
+    position: relative;
+     width: 15px;
+    height: 15px; 
+}
+.heart:before,.heart:after {
+    position: absolute;
+    content: "";
+    top: 6px;
+    width: 23px;
+    height: 34px;
+    background: red;
+    border-radius: 50px 50px 0 0;
+    }
+.heart:before{
+    left: 21px;
+    transform: rotate(-45deg);
+    transform-origin: 0 100%;
+}
+.heart:after {
+    left: -3px;
+    transform: rotate(45deg);
+    transform-origin: 100% 100%;
+    }
+#catMouth{
+    display: flex;
+    justify-content: center;
+    
+}
+.mouth{
+    width: 25px;
+    height: 20px;
+    border-radius: 50%;
+    position: relative;
+    background-color: #EEFF41;
+    box-shadow: 1px 5px 2px 0px black;
+}
+#tongue{    
+    height: 42px;
+    width: 30px;
+    background-color: #E91E63;
+    position: relative;
+    top: 43px;
+    left: 85px;
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+}
+#nose{
+    width: 23px;
+    height: 12px;
+    background-color: black;
+    position: relative;
+    left: 89px;
+    bottom: 19px;
+    border-radius: 100px/50px;
+    box-shadow: -1px 3px 20px 9px red;
+}
+
+.whisker1{
+    width: 50px;
+    height: 65px;
+    border: solid 2px #000;
+    border-color: #000 transparent transparent transparent;
+    position: relative;
+    right: -7px;
+    bottom: 25px;
+    transform: rotate(8deg);
+}
+.whisker2{
+    width: 50px;
+    height: 65px;
+    border: solid 2px #000;
+    border-color: #000 transparent transparent transparent;
+    position: relative;
+    right: -11px;
+    bottom: 78px;
+}
+.whisker3{
+    width: 50px;
+    height: 65px;
+    border: solid 2px #000;
+    border-color: #000 transparent transparent transparent;
+    position: relative;
+    right: -18px;
+    bottom: 131px;
+    transform: rotate(-10deg);
+}
+.whisker4{
+    width: 50px;
+    height: 65px;
+    border: solid 2px #000;
+    border-color: #000 transparent transparent transparent;
+    position: relative;
+    left: 144px;
+    bottom: 218px;
+    transform: rotate(-8deg);
+}
+.whisker5{
+    width: 50px;
+    height: 65px;
+    border: solid 2px #000;
+    border-color: #000 transparent transparent transparent;
+    position: relative;
+    left: 140px;
+    bottom: 273px;
+}
+.whisker6{
+    width: 50px;
+    height: 65px;
+    border: solid 2px #000;
+    border-color: #000 transparent transparent transparent;
+    position: relative;
+    left: 133px;
+    bottom: 327px;
+    transform: rotate(8deg);
+}
+.catHair{
+    position: relative;
+}
+.hair{
+    position: absolute;
+    transform: rotate(179deg);
+    opacity: 0.5;
+}

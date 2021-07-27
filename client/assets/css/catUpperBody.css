@@ -1,0 +1,34 @@
+#catBody{
+    height: 274px;
+}
+#catEars{
+    position: relative;
+}
+.ear{
+    width: 100px;
+    height: 100px;
+    background-color: #EEFF41;
+    border-radius: 90% 0 90% 0;
+    position: absolute;
+}
+.leftEar{
+    transform: scale(1,-1);
+}
+.rightEar{
+    left: 100px;
+}
+.innerEar{
+    width: 54px;
+    background-color: white;
+    border-radius: 90% 0 90% 0;
+    position: absolute;
+    opacity: 0.5;
+}
+.innerLeftEar{
+    height: 98px;
+}
+.innerRightEar{
+    height: 103px;
+    left: 44px;
+    transform: rotate(185deg);
+}
