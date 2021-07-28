@@ -7,11 +7,11 @@ var defaultDNA = {
     "eyesColor" : 13,
     "earsColor" : 39,
     //Cattributes
-    "eyesShape" : 1,
-    "decorationPattern" : 3,
-    "decorationMidcolor" : 48,
-    "decorationSidescolor" : 13,
-    "animation" : 1,
+    "eyesShape" : 6,
+    "decorationPattern" : 4,
+    "decorationMidcolor" : 58,
+    "decorationSidescolor" : 47,
+    "animation" : 4,
     "lastNum" : 1
     }
 

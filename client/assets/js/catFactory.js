@@ -88,20 +88,13 @@ function eyeVariation(num) {
     }
 }
 
-async function eyeDesignNew(){
-    var className = await $('#eyeDecoration').attr('class');
-    if(className == "smallPupils"){
-        await $('div.pupils').find('div').removeClass('smallPupils');  
-    }
-    await $('div.pupils').find('div').addClass('heart');
-    
+ function eyeDesignNew(){
+    $('div.pupils').find('div').removeClass('smallPupils');  
+    $('div.pupils').find('div').addClass('heart');
 }
-async function eyeDesign(){
-    var className = await $('#eyeDecoration').attr('class');
-    if(className == "heart"){
-        await $('div.pupils').find('div').removeClass('heart');
-    }
-    await $('div.pupils').find('div').addClass('smallPupils');
+ function eyeDesign(){
+    $('div.pupils').find('div').removeClass('heart');
+    $('div.pupils').find('div').addClass('smallPupils');
 }
 async function normalEyes() {
     await $('.pupils').css('border','none');
@@ -294,90 +287,51 @@ function animationVariation(num){
     $('#dnaanimation').html(num);
     switch (num) {
         case 1:
-            //resetAnimation();
-            $('#animationName').html('Moving Head');
-            $('#catEars').find('div.ear').removeClass('discoColor');
-            $('#catTail').removeClass('movingTail');
-            $('div.pupils').find('div').removeClass('movingPupil');
-            $('#tongue').removeClass('movingTongue');
-            $('#h_1').removeClass('movingHair1');
-            $('#h_2').removeClass('movingHair2');
-            $('#h_3').removeClass('movingHair3');
+            resetAnimation();
+            $('#animationName').html('Wiggling Head');
             animationStyle1();
             break;
         case 2:
-            //resetAnimation();
-            $('#animationName').html('Disco Colors');
-            $('#catHead').removeClass('movingFace');
-            $('#catTail').removeClass('movingTail');
-            $('div.pupils').find('div').removeClass('movingPupil');
-            $('#tongue').removeClass('movingTongue');
-            $('#h_1').removeClass('movingHair1');
-            $('#h_2').removeClass('movingHair2');
-            $('#h_3').removeClass('movingHair3');
+            resetAnimation();
+            $('#animationName').html('Colorful Ears');
             animationStyle2();
             break;
         case 3:
-            //resetAnimation();
-            $('#animationName').html('Moving Tail');
-            $('#catHead').removeClass('movingFace');
-            $('#catEars').find('div.ear').removeClass('discoColor');
-            $('div.pupils').find('div').removeClass('movingPupil');
-            $('#tongue').removeClass('movingTongue');
-            $('#h_1').removeClass('movingHair1');
-            $('#h_2').removeClass('movingHair2');
-            $('#h_3').removeClass('movingHair3');
+            resetAnimation();
+            $('#animationName').html('Wiggling Tail');
             animationStyle3();
             break;
         case 4:
-            //resetAnimation();
-            $('#animationName').html('Moving Pupil');
-            $('#catHead').removeClass('movingFace');
-            $('#catEars').find('div.ear').removeClass('discoColor');
-            $('#catTail').removeClass('movingTail');
-            $('#tongue').removeClass('movingTongue');
-            $('#h_1').removeClass('movingHair1');
-            $('#h_2').removeClass('movingHair2');
-            $('#h_3').removeClass('movingHair3');
+            resetAnimation();
+            $('#animationName').html('Wiggling Pupils');
             animationStyle4();
             break;
         case 5 :
-            //resetAnimation();
-            $('#animationName').html('Moving Tongue');
-            $('#catHead').removeClass('movingFace');
-            $('#catEars').find('div.ear').removeClass('discoColor');
-            $('#catTail').removeClass('movingTail');
-            $('div.pupils').find('div').removeClass('movingPupil');
-            $('#h_1').removeClass('movingHair1');
-            $('#h_2').removeClass('movingHair2');
-            $('#h_3').removeClass('movingHair3');
+            resetAnimation();
+            $('#animationName').html('Wiggling Tongue');
             animationStyle5();
             break;
         case 6:
-            //resetAnimation();
-            $('#animationName').html('Moving Propeller');
-            $('#catHead').removeClass('movingFace');
-            $('#catEars').find('div.ear').removeClass('discoColor');
-            $('#catTail').removeClass('movingTail');
-            $('div.pupils').find('div').removeClass('movingPupil');
-            $('#tongue').removeClass('movingTongue');
+            resetAnimation();
+            $('#animationName').html('Rotating Propeller');
             animationStyle6();
             break;
         default:
-            $('#animationName').html('Processing');
+            $('#animationName').html('No animation');
             resetAnimation();
     }
 }
 
-async function resetAnimation(){
-    await $('#catHead').removeClass('movingFace');
-    await $('#catEars').find('div.ear').removeClass('discoColor');
-    await $('#catTail').removeClass('movingTail');
-    await $('div.pupils').find('div').removeClass('movingPupil');
-    await $('#tongue').removeClass('movingTongue');
-    await $('#h_1').removeClass('movingHair1');
-    await $('#h_2').removeClass('movingHair2');
-    await $('#h_3').removeClass('movingHair3');
+ function resetAnimation(){
+    
+    $('#catHead').removeClass('movingFace');
+    $('#catEars').find('div.ear').removeClass('discoColor');
+    $('#catTail').removeClass('movingTail');
+    $('div.pupils').find('div').removeClass('movingPupil');
+    $('#tongue').removeClass('movingTongue');
+    $('#h_1').removeClass('movingHair1');
+    $('#h_2').removeClass('movingHair2');
+    $('#h_3').removeClass('movingHair3');
 }
 async function checkForPupils(){
     await $('div.pupils').find('div').removeClass('heart');
