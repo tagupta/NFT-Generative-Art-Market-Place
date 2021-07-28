@@ -1,0 +1,105 @@
+.movingFace{
+    animation: moveHead 3s infinite;
+}
+
+@keyframes moveHead{
+    0% {
+        transform: rotate(0deg);
+    }
+    30% {
+        transform: rotate(5deg);
+    }
+    60% {
+        transform: rotate(-5deg);
+    }
+    100%{
+        transform: rotate(0deg);
+    }
+}
+.discoColor{
+    animation: changingColors 4s infinite;
+}
+@keyframes changingColors{
+    0% {background-color: #EEFF41;}
+    25%{background-color: crimson;}
+    50%{background-color: chartreuse;}
+    75%{background-color: darkorange;}
+    100%{background-color: darkblue;}
+}
+
+.movingTail{
+    animation: moveTail 1s infinite;
+}
+@keyframes moveTail{
+    0% {
+        transform: rotate(0deg);
+    }
+    30% {
+        transform: rotate(5deg);
+    }
+    60% {
+        transform: rotate(-5deg);
+    }
+    100%{
+        transform: rotate(0deg);
+    }
+}
+
+.movingPupil{
+    animation: moveInnerPupil 2s infinite;
+}
+@keyframes moveInnerPupil{
+    0%{left: 0px;top : 0px}
+    25%{left:23px;top : 0px}
+    50%{left:23px;top : 23px}
+    75%{left:0px;top : 23px}
+    100%{left:0px;top : 0px}
+}
+.movingTongue{
+    animation: moveTongue 1s infinite;
+}
+@keyframes moveTongue {
+    0% {
+        transform: rotate(0deg);
+    }
+    30% {
+        transform: rotate(45deg);
+    }
+    60% {
+        transform: rotate(-45deg);
+    }
+    100%{
+        transform: rotate(0deg);
+    }
+}
+/* hair1 */
+.movingHair1{
+    animation: movingPropeller1 4s infinite;
+}
+@keyframes movingPropeller1{
+    0%{transform: rotate(179deg);height: 35px;left: 93px;top: 0px;}
+    30%{transform: rotate(-116deg);top: 19px;left: 86px;height: 30px;}
+    60%{transform: rotate(116deg);top: 19px;left:100px ;height:30px;}
+    100%{transform: rotate(179deg);height: 35px;left: 93px;top: 0px;}
+}
+/* hair2 */
+.movingHair2{
+    animation: movingPropeller2 4s infinite;
+}
+@keyframes  movingPropeller2{
+    
+    0%{transform: rotate(-116deg);top: 19px;left: 86px;height: 30px;}
+    30%{transform: rotate(116deg);top: 19px;left:100px ;height:30px;}
+    60%{transform: rotate(179deg);height: 35px;left: 93px;top: 0px;}
+    100%{transform: rotate(-116deg);top: 19px;left: 86px;height: 30px;}
+}
+/* hair3 */
+.movingHair3{
+    animation: movingPropeller3 4s infinite;
+}
+@keyframes  movingPropeller3{
+    0%{transform: rotate(116deg);top: 19px;left:100px ;height:30px;}
+    30%{transform: rotate(179deg);height: 35px;left: 93px;top: 0px;}
+    60%{transform: rotate(-116deg);top: 19px;left: 86px;height: 30px;}
+    100%{transform: rotate(116deg);top: 19px;left:100px ;height:30px;}
+}

@@ -5,14 +5,14 @@ var defaultDNA = {
     "headcolor" : 23,
     "mouthColor" : 31,
     "eyesColor" : 13,
-    "earsColor" : 71,
+    "earsColor" : 39,
     //Cattributes
     "eyesShape" : 1,
     "decorationPattern" : 3,
     "decorationMidcolor" : 48,
     "decorationSidescolor" : 13,
-    "animation" :  1,
-    "lastNum" :  1
+    "animation" : 1,
+    "lastNum" : 1
     }
 
 // when page load
@@ -72,7 +72,10 @@ function renderCat(dna){
 
     decorationSideColor(colors[dna.decorationSidescolor],dna.decorationSidescolor);
     $('#decorationSideCode').val(dna.decorationSidescolor);
-}
+    
+    animationVariation(dna.animation);
+    $('#animationCode').val(dna.animation);
+  }
 
 // Changing cat colors
 $('#bodycolor').change(()=>{
@@ -106,4 +109,8 @@ $('#decorationMidCode').change(()=>{
 $('#decorationSideCode').change(()=>{
   var colorVal = $('#decorationSideCode').val();
   decorationSideColor(colors[colorVal],colorVal);
+});
+$('#animationCode').change(()=>{
+  var value = parseInt($('#animationCode').val());
+  animationVariation(value);
 });

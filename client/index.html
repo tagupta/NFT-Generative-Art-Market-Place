@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="assets/css/colors.css">
   <link rel="stylesheet" href="assets/css/factory.css">
   <link rel="stylesheet" href="assets/css/frontend.css">
-
+  <link rel="stylesheet" href="assets/css/animations.css">
   <link rel="stylesheet" href="assets/css/catFace.css">
   <link rel="stylesheet" href="assets/css/catLowerBody.css">
   <link rel="stylesheet" href="assets/css/catUpperBody.css">
@@ -36,11 +36,11 @@
                             <div class="innerEar innerRightEar"></div>
                         </div>
                     </div>
-                    <div id="catFace">
+                    <div id="catHead" class="catFace">
                         <div class="catHair">
-                            <div class="hair hair1 mid"></div>
-                            <div class="hair hair2 sides"></div>
-                            <div class="hair hair3 sides"></div>
+                            <div id="h_1" class="hair hair1 mid"></div>
+                            <div id="h_2" class="hair hair2 sides"></div>
+                            <div id="h_3" class="hair hair3 sides"></div>
                         </div>
                         <div id="catEyes">
                             <div class="eyes">
@@ -55,7 +55,7 @@
                                </div>
                             </div>
                         </div>
-                    <div id="tongue"></div> 
+                    <div id="tongue" class=""></div> 
                     <div id="catMouth">
                         <div class="mouth"></div>
                         <div class="mouth"></div>
@@ -70,10 +70,10 @@
                         <div class="whisker6"></div>
                     </div>
                     </div>
-                     <div id="catLowerBody">
+                     <div id="catLowerBody" class="">
                      </div>
                     
-                     <div id="catLowerLowerBody">
+                     <div id="catLowerLowerBody" class="">
                         <div id="bodyShadow"></div>
                      </div>
                   
@@ -91,7 +91,7 @@
                          </div>
                          
                      
-                     <div id="catTail">
+                     <div id="catTail" class="">
                          <div id="innerTail"></div>
                      </div>
                    </div>
@@ -110,7 +110,7 @@
                          <span id="dnadecoration"></span>
                          <span id="dnadecorationMid"></span>
                          <span id="dnadecorationSides"></span>
-                         <span id="dnadanimation"></span>
+                         <span id="dnaanimation"></span>
                          <span id="dnaspecial"></span>
                     </b>
                 </div>
@@ -144,12 +144,17 @@
                     <input type="range" min="1" max="7" class="form-control-range" id="decorationCode">
                 </div>
                 <div class="form-group">
-                    <label for="formControlRange"><b>Decoration Mid Color</b><span class="badge badge-dark ml-2" id="decorationMidName"></span></label>
+                    <label for="formControlRange"><b>Decoration Middle Color</b><span class="badge badge-dark ml-2" id="decorationMidName"></span></label>
                     <input type="range" min="10" max="98" class="form-control-range" id="decorationMidCode">
                 </div>
                 <div class="form-group">
                     <label for="formControlRange"><b>Decoration Sides Color</b><span class="badge badge-dark ml-2" id="decorationSideName"></span></label>
                     <input type="range" min="10" max="98" class="form-control-range" id="decorationSideCode">
+                        
+                </div>
+                <div class="form-group">
+                    <label for="formControlRange"><b>Animation</b><span class="badge badge-dark ml-2" id="animationName"></span></label>
+                    <input type="range" min="1" max="7" class="form-control-range" id="animationCode">  
                 </div>
             </div>
 
