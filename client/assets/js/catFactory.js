@@ -293,7 +293,7 @@ function animationVariation(num){
             break;
         case 2:
             resetAnimation();
-            $('#animationName').html('Colorful Ears');
+            $('#animationName').html('Vibrant Kitty');
             animationStyle2();
             break;
         case 3:
@@ -326,6 +326,9 @@ function animationVariation(num){
     
     $('#catHead').removeClass('movingFace');
     $('#catEars').find('div.ear').removeClass('discoColor');
+    $('#bodyShadow').removeClass('discoColor');
+    $('#innerTail').removeClass('discoColor');
+    $('.nail').removeClass('discoColor')
     $('#catTail').removeClass('movingTail');
     $('div.pupils').find('div').removeClass('movingPupil');
     $('#tongue').removeClass('movingTongue');
@@ -344,6 +347,9 @@ async function animationStyle1(){
 async function animationStyle2(){
     checkForPupils();
     await $('#catEars').find('div.ear').addClass('discoColor');
+    await $('#bodyShadow').addClass('discoColor');
+    await $('#innerTail').addClass('discoColor');
+    await $('.nail').addClass('discoColor');
 }
 async function animationStyle3(){
     checkForPupils();

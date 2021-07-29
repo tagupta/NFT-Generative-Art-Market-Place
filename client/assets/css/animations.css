@@ -24,7 +24,7 @@
     25%{background-color: crimson;}
     50%{background-color: chartreuse;}
     75%{background-color: darkorange;}
-    100%{background-color: darkblue;}
+    100%{background-color: darkseagreen;}
 }
 
 .movingTail{
@@ -32,16 +32,13 @@
 }
 @keyframes moveTail{
     0% {
-        transform: rotate(0deg);
+        transform: rotate(-45deg);
     }
-    30% {
-        transform: rotate(5deg);
+    50% {
+        transform: rotate(-30deg);
     }
-    60% {
-        transform: rotate(-5deg);
-    }
-    100%{
-        transform: rotate(0deg);
+    100% {
+        transform: rotate(-45deg);
     }
 }
 

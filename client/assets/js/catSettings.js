@@ -77,6 +77,34 @@ function renderCat(dna){
     $('#animationCode').val(dna.animation);
   }
 
+  $('#defaultKitty').click(()=>{
+    renderCat(defaultDNA);
+  });
+  
+  var getRandomLarge = () =>{
+    return (Math.ceil(Math.random() * 88) + 10);
+  }
+  var getRandomSmall = () =>{
+    return (Math.ceil(Math.random() * 7));
+  }
+
+  $('#randomKitty').click(()=>{
+    var randomDNA = {
+      "headcolor" : getRandomLarge(),
+      "mouthColor" : getRandomLarge(),
+      "eyesColor" : getRandomLarge(),
+      "earsColor" : getRandomLarge(),
+      //Cattributes
+      "eyesShape" : getRandomSmall(),
+      "decorationPattern" : getRandomSmall(),
+      "decorationMidcolor" : getRandomLarge(),
+      "decorationSidescolor" : getRandomLarge(),
+      "animation" : getRandomSmall(),
+      "lastNum" : 1
+      }
+    renderCat(randomDNA);
+  });
+
 // Changing cat colors
 $('#bodycolor').change(()=>{
     var colorVal = $('#bodycolor').val()
