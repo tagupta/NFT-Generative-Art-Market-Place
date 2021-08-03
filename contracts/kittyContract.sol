@@ -6,10 +6,10 @@ import './Ownable.sol';
 contract KittyContract is IERC721,Ownable{
    string public constant _name = "TanuKitties";
    string public constant _symbol = "TKT";
-   uint public constant CREATION_LIMIT_GEN0 = 10;
+   uint public constant CREATION_LIMIT_GEN0 = 20;
 
    event Birth(address owner, uint kittenId,uint mumId,uint dadId,uint genes);
-  
+   
    struct Kitty{
        uint256 genes;
        uint64 birthTime;
@@ -21,13 +21,23 @@ contract KittyContract is IERC721,Ownable{
 
    mapping(address => uint)private ownershipTokenCount; //token owner => #tokens
    mapping(uint => address)private tokenOwner; // tokenId => tokenowner
-   mapping(address => uint[])ownershipTokenList; // tokenOwner => list of tokenIds
+   // mapping(address => uint[])ownershipTokenList; // tokenOwner => list of tokenIds
    uint gen0Counter;
    
 
-   function getKitty(uint _tokenId) external view returns(Kitty memory,address){
-      return (kitties[_tokenId],tokenOwner[_tokenId]);
+   function getKitty(uint _tokenId) external view returns(uint genes,
+                                                          uint birthTime,
+                                                          uint mumId,
+                                                          uint dadId,
+                                                          uint generation){
+      Kitty storage tempKitty = kitties[_tokenId];
+      genes = tempKitty.genes;
+      birthTime = tempKitty.birthTime;
+      mumId = tempKitty.mumId;
+      dadId = tempKitty.dadId;
+      generation = tempKitty.generation;
    }
+
    function createKittyGen0(uint _genes) public onlyOwner returns(uint){
      require(gen0Counter < CREATION_LIMIT_GEN0,'Gen0 creation limit exceeds');
      gen0Counter++;
@@ -80,23 +90,23 @@ contract KittyContract is IERC721,Ownable{
        //from
        if(from != address(0)){
         ownershipTokenCount[from] -= 1;
-        uint[] storage fromTokens = ownershipTokenList[from];
-        uint len = fromTokens.length;
-        uint tokenToRemove = 0;
-        for(uint i = 0 ; i < len ; i++){
-            if(fromTokens[i] == tokenId){
-                tokenToRemove = i;
-                break;
-            }
-        }
-        fromTokens[tokenToRemove] = fromTokens[len-1];
-        fromTokens.pop();
+      //   uint[] storage fromTokens = ownershipTokenList[from];
+      //   uint len = fromTokens.length;
+      //   uint tokenToRemove = 0;
+      //   for(uint i = 0 ; i < len ; i++){
+      //       if(fromTokens[i] == tokenId){
+      //           tokenToRemove = i;
+      //           break;
+      //       }
+      //   }
+      //   fromTokens[tokenToRemove] = fromTokens[len-1];
+      //   fromTokens.pop();
        }
        
        //to
        ownershipTokenCount[to] += 1;
        tokenOwner[tokenId] = to;
-       ownershipTokenList[to].push(tokenId);
+      //  ownershipTokenList[to].push(tokenId);
 
        emit Transfer(from,to,tokenId);
    }

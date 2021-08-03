@@ -7,6 +7,9 @@
   <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
   <script src="assets/bootstrap/js/popper.js"></script>
   <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+  <script src="assets/js/web3.min.js"></script>
+  <script src="./abi.js"></script>
+
 
   <link rel="stylesheet" href="assets/css/mystyle.css">
   <link rel="stylesheet" href="assets/css/cats.css">
@@ -20,11 +23,12 @@
 
 </head>
   <body>
-    <div class="container p-5" style="margin-top: 12vh;margin-bottom: 10vh;">
+    <div class="container p-5" style="margin-bottom: 10vh;">
         <div align="center">
-        <h1 class="c-white">Kitties-Factory</h1>
-        <p class="c-white">Create your custom Kitty</p>
-    </div>
+            <h1 class="c-white">Kitties-Factory</h1>
+            <p class="c-white">Create your custom Kitty</p>
+        </div>
+        
         <div class="row">
             <div class="col-lg-4 catBox m-2 light-b-shadow">
                 <div id="catBody">
@@ -117,78 +121,101 @@
             </div>
             <div class="col-lg-7 cattributes m-2 light-b-shadow">
 
-            <!-- Cat colors -->
-            <div id="catColors">
-                <ul class="nav nav-pills nav-justified" id="myTab" role="tablist">
-                    <li class="nav-item">
-                      <a class="nav-link active" id="colors-tab" data-toggle="pill" href="#color" role="tab" aria-controls="color" aria-selected="true">Colors</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" id="cattributes-tab" data-toggle="pill" href="#cattribute" role="tab" aria-controls="cattribute" aria-selected="false">Cattributes</a>
-                    </li>
-                </ul>
+                <!-- Cat colors -->
+                <div id="catColors">
+                    <ul class="nav nav-pills nav-justified" id="myTab" role="tablist">
+                        <li class="nav-item">
+                        <a class="nav-link active" id="colors-tab" data-toggle="pill" href="#color" role="tab" aria-controls="color" aria-selected="true">Colors</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" id="cattributes-tab" data-toggle="pill" href="#cattribute" role="tab" aria-controls="cattribute" aria-selected="false">Cattributes</a>
+                        </li>
+                    </ul>
 
-                <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade show active" id="color" role="tabpanel" aria-labelledby="colors-tab">
-                        <br>
-                        <div class="form-group">
-                            <label for="formControlRange"><b>Head and body</b><span class="badge badge-dark ml-2" id="headcode"></span></label>
-                            <input type="range" min="10" max="98" class="form-control-range" id="bodycolor">
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="color" role="tabpanel" aria-labelledby="colors-tab">
+                            <br>
+                            <div class="form-group">
+                                <label for="formControlRange"><b>Head and body</b><span class="badge badge-dark ml-2" id="headcode"></span></label>
+                                <input type="range" min="10" max="98" class="form-control-range" id="bodycolor">
+                            </div>
+                            <div class="form-group">
+                                <label for="formControlRange"><b>Mouth</b><span class="badge badge-dark ml-2" id="mouthcode"></span></label>
+                                <input type="range" min="10" max="98" class="form-control-range" id="tonguecolor">
+                            </div>
+                            <div class="form-group">
+                                <label for="formControlRange"><b>Eyes</b><span class="badge badge-dark ml-2" id="eyescode"></span></label>
+                                <input type="range" min="10" max="98" class="form-control-range" id="outerEyeCode">
+                            </div>
+                            <div class="form-group">
+                                <label for="formControlRange"><b>Body Shadow</b><span class="badge badge-dark ml-2" id="shadowcode"></span></label>
+                                <input type="range" min="10" max="98" class="form-control-range" id="bodyShadowCode">
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="formControlRange"><b>Mouth</b><span class="badge badge-dark ml-2" id="mouthcode"></span></label>
-                            <input type="range" min="10" max="98" class="form-control-range" id="tonguecolor">
-                        </div>
-                        <div class="form-group">
-                            <label for="formControlRange"><b>Eyes</b><span class="badge badge-dark ml-2" id="eyescode"></span></label>
-                            <input type="range" min="10" max="98" class="form-control-range" id="outerEyeCode">
-                        </div>
-                        <div class="form-group">
-                            <label for="formControlRange"><b>Body Shadow</b><span class="badge badge-dark ml-2" id="shadowcode"></span></label>
-                            <input type="range" min="10" max="98" class="form-control-range" id="bodyShadowCode">
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" id="cattribute" role="tabpanel" aria-labelledby="cattributes-tab">
-                        <br>
-                        <div class="form-group">
-                            <label for="formControlRange"><b>Eye shape</b><span class="badge badge-dark ml-2" id="eyeName"></span></label>
-                            <input type="range" min="1" max="7" class="form-control-range" id="eyeshape">
-                        </div>
-                        <div class="form-group">
-                            <label for="formControlRange"><b>Face Decoration</b><span class="badge badge-dark ml-2" id="decorationName"></span></label>
-                            <input type="range" min="1" max="7" class="form-control-range" id="decorationCode">
-                        </div>
-                        <div class="form-group">
-                            <label for="formControlRange"><b>Decoration Middle Color</b><span class="badge badge-dark ml-2" id="decorationMidName"></span></label>
-                            <input type="range" min="10" max="98" class="form-control-range" id="decorationMidCode">
-                        </div>
-                        <div class="form-group">
-                            <label for="formControlRange"><b>Decoration Sides Color</b><span class="badge badge-dark ml-2" id="decorationSideName"></span></label>
-                            <input type="range" min="10" max="98" class="form-control-range" id="decorationSideCode">    
-                        </div>
-                        <div class="form-group">
-                            <label for="formControlRange"><b>Animation</b><span class="badge badge-dark ml-2" id="animationName"></span></label>
-                            <input type="range" min="1" max="7" class="form-control-range" id="animationCode">  
+                        <div class="tab-pane fade" id="cattribute" role="tabpanel" aria-labelledby="cattributes-tab">
+                            <br>
+                            <div class="form-group">
+                                <label for="formControlRange"><b>Eye shape</b><span class="badge badge-dark ml-2" id="eyeName"></span></label>
+                                <input type="range" min="1" max="7" class="form-control-range" id="eyeshape">
+                            </div>
+                            <div class="form-group">
+                                <label for="formControlRange"><b>Face Decoration</b><span class="badge badge-dark ml-2" id="decorationName"></span></label>
+                                <input type="range" min="1" max="7" class="form-control-range" id="decorationCode">
+                            </div>
+                            <div class="form-group">
+                                <label for="formControlRange"><b>Decoration Middle Color</b><span class="badge badge-dark ml-2" id="decorationMidName"></span></label>
+                                <input type="range" min="10" max="98" class="form-control-range" id="decorationMidCode">
+                            </div>
+                            <div class="form-group">
+                                <label for="formControlRange"><b>Decoration Sides Color</b><span class="badge badge-dark ml-2" id="decorationSideName"></span></label>
+                                <input type="range" min="10" max="98" class="form-control-range" id="decorationSideCode">    
+                            </div>
+                            <div class="form-group">
+                                <label for="formControlRange"><b>Animation</b><span class="badge badge-dark ml-2" id="animationName"></span></label>
+                                <input type="range" min="1" max="7" class="form-control-range" id="animationCode">  
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <b>
-           <div class="text-center mybtnClass">
-            <button type="button" id="defaultKitty" class="btn btn-outline-primary">Default Kitty</button>
-            <button type="button" id="randomKitty" class="btn btn-outline-warning">Random Kitty</button>
-            <button type="button" id="newKitty" class="btn btn-outline-success">New Kitty</button>
-           </div>
-           </b>
+                <b>
+                <div class="text-center mybtnClass">
+                    <button type="button" id="defaultKitty" class="btn btn-outline-primary">Default Kitty</button>
+                    <button type="button" id="randomKitty" class="btn btn-outline-warning">Random Kitty</button>
+                    <button type="button" id="newgen0Kitty" class="btn btn-outline-success">New Gen-0 Kitty</button>
+                </div>
+                </b>
             </div>
         </div>
         <br>
+        <!-- Toast -->
+        <div aria-live="polite" aria-atomic="true"  style="position: absolute;top: 14vh;right: 0; min-height: 200px;min-width: 310px;">
+            <div class="toast" data-delay="3000" style="position: absolute; top: 0; right: 0;">
+              <div class="toast-header">
+                <strong class="mr-auto notifyHead">""</strong>
+                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="toast-body notifyBody">""
+              </div>
+            </div>
 
+            <div class="toast" data-delay="5000" data-autohide="false" style="position: absolute; top: 87px; right: 0;" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header">
+                  <strong class="mr-auto notifyHead2">""</strong>
+                  <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="toast-body notifyBody2">""
+                </div>
+            </div>
         </div>
-
-
-
     </div>
+
+
+
+   
     <footer align="left">
         <p>Ivan on Tech Academy Bootcamp July 2020</p>
     </footer>
@@ -197,5 +224,8 @@
   <script src="assets/js/colors.js"></script>
   <script src="assets/js/catSettings.js"></script>
   <script src="assets/js/catFactory.js"></script>
+  <script src="./index.js"></script>
+  <script src="./eventListeners.js"></script>
+
 
 </html>
