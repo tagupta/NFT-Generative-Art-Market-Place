@@ -19,8 +19,22 @@ body {
   width: fit-content;
 }
 
+#threeButtons button{
+  width: 80%;
+  color: black;
+  font-family: system-ui;
+}
+.padding{
+  padding-bottom: 2rem;
+}
+
 html {
   overflow-x: hidden;  
+}
+.factoryHeader{
+  font-size: 250%;
+  font-weight: 500%;
+  font-family: monospace;
 }
 
 .abs-center {

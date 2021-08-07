@@ -1,4 +1,5 @@
 
+var kittenIndex;
 function listenBirthEvent(){
     instance.events.Birth().on('data',function(event){
         console.log(event);
@@ -11,6 +12,9 @@ function listenBirthEvent(){
                                                         MumID: ${eventReturnVal.mumId} </br>
                                                         Genes: ${eventReturnVal.genes} `);
         $('.toast').toast('show');
+     
+         renderingCats(eventReturnVal.kittenId,eventReturnVal.genes);
+
     }).on('error',function(error, receipt){
         console.log(error);
         $('.notifyHead2').html('Error Notification');

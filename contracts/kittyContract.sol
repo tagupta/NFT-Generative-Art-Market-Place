@@ -9,7 +9,7 @@ contract KittyContract is IERC721,Ownable{
    uint public constant CREATION_LIMIT_GEN0 = 20;
 
    event Birth(address owner, uint kittenId,uint mumId,uint dadId,uint genes);
-   
+
    struct Kitty{
        uint256 genes;
        uint64 birthTime;
@@ -20,8 +20,9 @@ contract KittyContract is IERC721,Ownable{
    Kitty[] kitties;
 
    mapping(address => uint)private ownershipTokenCount; //token owner => #tokens
-   mapping(uint => address)private tokenOwner; // tokenId => tokenowner
-   // mapping(address => uint[])ownershipTokenList; // tokenOwner => list of tokenIds
+   mapping(uint => address)public tokenOwner; // tokenId => tokenowner
+   mapping(uint => address) public kittyIndexToApproved;
+   mapping(address => mapping(address => bool))private _operatorApprovals;
    uint gen0Counter;
    
 
@@ -90,29 +91,65 @@ contract KittyContract is IERC721,Ownable{
        //from
        if(from != address(0)){
         ownershipTokenCount[from] -= 1;
-      //   uint[] storage fromTokens = ownershipTokenList[from];
-      //   uint len = fromTokens.length;
-      //   uint tokenToRemove = 0;
-      //   for(uint i = 0 ; i < len ; i++){
-      //       if(fromTokens[i] == tokenId){
-      //           tokenToRemove = i;
-      //           break;
-      //       }
-      //   }
-      //   fromTokens[tokenToRemove] = fromTokens[len-1];
-      //   fromTokens.pop();
+        delete kittyIndexToApproved[tokenId]; //nice point
        }
        
        //to
        ownershipTokenCount[to] += 1;
        tokenOwner[tokenId] = to;
-      //  ownershipTokenList[to].push(tokenId);
 
        emit Transfer(from,to,tokenId);
    }
 
+   function approve(address _approved, uint256 _tokenId) external override{
+      require(owns(msg.sender,_tokenId) || operates(msg.sender,_tokenId),'Someone else is tampering the approve');
+      _approve(_approved,_tokenId);
+      emit Approval(msg.sender, _approved, _tokenId);
+   }
+
+   function _approve(address _approved, uint _tokenId)private{
+       kittyIndexToApproved[_tokenId] = _approved;
+   }
+
+   function setApprovalForAll(address _operator, bool _approved) external override{
+      require(msg.sender != _operator,"You can't approve yourself");
+      _setApprovalForAll(msg.sender,_operator,_approved);
+      emit ApprovalForAll(msg.sender,_operator,_approved);
+   }
+   
+   function _setApprovalForAll(address _owner,address _operator,bool _approved)private{
+      _operatorApprovals[_owner][_operator] = _approved;
+   }
+
+   function getApproved(uint256 _tokenId) external view override returns (address){
+       require(_tokenId < kitties.length,'Invalid token');
+       return kittyIndexToApproved[_tokenId];
+   }
+
+   function isApprovedForAll(address _owner, address _operator) external view override returns (bool){
+     return _operatorApprovals[_owner][_operator];
+   }
+
+   function transferFrom(address _from, address _to, uint256 _tokenId) external override{
+      require(_tokenId < kitties.length,'Invalid token Id');
+      require(_to != address(0),"Receiver address should not be address(0)");
+      require(_from == tokenOwner[_tokenId],"Sender account doesn't belong to token owner");
+      require(msg.sender == _from || operates(msg.sender,_tokenId) || operatesAll(_from,msg.sender),'Unauthorized tampering with transferFrom');
+      
+      _transfer(_from,_to,_tokenId);
+   }
+
+
    function owns(address claimant, uint tokenID)internal view returns(bool){
       return (tokenOwner[tokenID] == claimant);
    }
+
+   function operates(address _approved,uint _tokenId) internal view returns(bool){
+      return kittyIndexToApproved[_tokenId] == _approved;
+   }
+   function operatesAll(address _owner, address _operator) internal view returns (bool){
+     return _operatorApprovals[_owner][_operator];
+   }
+
 
 }
