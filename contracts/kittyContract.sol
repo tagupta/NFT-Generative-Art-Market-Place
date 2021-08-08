@@ -2,11 +2,15 @@
 pragma solidity >0.4.22 <=0.9.0;
 import './IERC721.sol';
 import './Ownable.sol';
+import './IERC721Receiver.sol';
 
 contract KittyContract is IERC721,Ownable{
    string public constant _name = "TanuKitties";
    string public constant _symbol = "TKT";
    uint public constant CREATION_LIMIT_GEN0 = 20;
+   bytes4 internal constant MAGIC_ERC721_RECEIVED = bytes4(keccak256("onERC721Received(address,address,uint256,bytes)"));
+   bytes4 private _INTERFACE_ID_ERC721 = 0x80ac58cd;
+   bytes4 private _INTERFACE_ID_ERC165 = 0x01ffc9a7;
 
    event Birth(address owner, uint kittenId,uint mumId,uint dadId,uint genes);
 
@@ -25,8 +29,19 @@ contract KittyContract is IERC721,Ownable{
    mapping(address => mapping(address => bool))private _operatorApprovals;
    uint gen0Counter;
    
+   modifier checkTransfer(address _from, address _to, uint256 _tokenId){
+      require(_tokenId < kitties.length,'Invalid token Id');
+      require(_to != address(0),"Receiver address should not be address(0)");
+      require(_from == tokenOwner[_tokenId],"Sender account doesn't belong to token owner");
+      require(msg.sender == _from || operates(msg.sender,_tokenId) || isApprovedForAll(_from,msg.sender),'Unauthorized tampering with transferFrom');
+      _;
+   }
+   
+   function supportsInterface(bytes4 _interfaceId) external view returns(bool){
+      return(_interfaceId == _INTERFACE_ID_ERC721 || _interfaceId == _INTERFACE_ID_ERC165);
+   }
 
-   function getKitty(uint _tokenId) external view returns(uint genes,
+   function getKitty(uint _tokenId) public virtual view returns(uint genes,
                                                           uint birthTime,
                                                           uint mumId,
                                                           uint dadId,
@@ -59,28 +74,28 @@ contract KittyContract is IERC721,Ownable{
      return newID;
    }
 
-   function balanceOf(address owner) external view override returns (uint256 balance){
+   function balanceOf(address owner) public virtual view override returns (uint256 balance){
        balance = ownershipTokenCount[owner];
    }
    
-   function totalSupply() external view override returns (uint256 total){
+   function totalSupply() public virtual view override returns (uint256 total){
       total = kitties.length;
    }
 
-   function name() external pure override returns (string memory){
+   function name() public virtual pure override returns (string memory){
       return _name;
    }
 
-   function symbol() external pure override returns (string memory tokenSymbol){
+   function symbol() public virtual pure override returns (string memory tokenSymbol){
        tokenSymbol = _symbol;
    }
 
-   function ownerOf(uint256 tokenId) external view override returns (address owner){
+   function ownerOf(uint256 tokenId) public virtual view override returns (address owner){
       require(tokenOwner[tokenId] != address(0),"Token with this ID doesn't exist");
       owner = tokenOwner[tokenId];
    }
    
-   function transfer(address to, uint256 tokenId) external override{
+   function transfer(address to, uint256 tokenId) public virtual override{
       require(to != address(0),"Receiver can not be zero address");
       require(to != address(this),"You can't transfer token to this contract");
       require(owns(msg.sender,tokenId),"You're not the owner of this token");
@@ -101,7 +116,7 @@ contract KittyContract is IERC721,Ownable{
        emit Transfer(from,to,tokenId);
    }
 
-   function approve(address _approved, uint256 _tokenId) external override{
+   function approve(address _approved, uint256 _tokenId) public virtual override{
       require(owns(msg.sender,_tokenId) || operates(msg.sender,_tokenId),'Someone else is tampering the approve');
       _approve(_approved,_tokenId);
       emit Approval(msg.sender, _approved, _tokenId);
@@ -111,7 +126,7 @@ contract KittyContract is IERC721,Ownable{
        kittyIndexToApproved[_tokenId] = _approved;
    }
 
-   function setApprovalForAll(address _operator, bool _approved) external override{
+   function setApprovalForAll(address _operator, bool _approved) public virtual override{
       require(msg.sender != _operator,"You can't approve yourself");
       _setApprovalForAll(msg.sender,_operator,_approved);
       emit ApprovalForAll(msg.sender,_operator,_approved);
@@ -121,24 +136,46 @@ contract KittyContract is IERC721,Ownable{
       _operatorApprovals[_owner][_operator] = _approved;
    }
 
-   function getApproved(uint256 _tokenId) external view override returns (address){
+   function getApproved(uint256 _tokenId) public virtual view override returns (address){
        require(_tokenId < kitties.length,'Invalid token');
        return kittyIndexToApproved[_tokenId];
    }
 
-   function isApprovedForAll(address _owner, address _operator) external view override returns (bool){
+   function isApprovedForAll(address _owner, address _operator) public virtual view override returns (bool){
      return _operatorApprovals[_owner][_operator];
    }
-
-   function transferFrom(address _from, address _to, uint256 _tokenId) external override{
-      require(_tokenId < kitties.length,'Invalid token Id');
-      require(_to != address(0),"Receiver address should not be address(0)");
-      require(_from == tokenOwner[_tokenId],"Sender account doesn't belong to token owner");
-      require(msg.sender == _from || operates(msg.sender,_tokenId) || operatesAll(_from,msg.sender),'Unauthorized tampering with transferFrom');
-      
+   
+   function transferFrom(address _from, address _to, uint256 _tokenId) public virtual override checkTransfer(_from,_to,_tokenId){
       _transfer(_from,_to,_tokenId);
    }
 
+   function safeTransferFrom(address _from, address _to, uint256 _tokenId) public virtual override {
+     safeTransferFrom(_from,_to,_tokenId,"");
+   }
+
+   function safeTransferFrom(address _from, address _to, uint256 _tokenId, bytes memory data) public virtual override checkTransfer(_from,_to,_tokenId){
+       _safeTransfer(_from,_to,_tokenId,data);
+   }
+
+   function _safeTransfer(address _from, address _to, uint _tokenId,bytes memory _data)  internal{
+        _transfer(_from, _to,_tokenId);
+        require(_checkERC721Support(_from,_to,_tokenId,_data));
+   }
+   function _checkERC721Support(address _from, address _to, uint _tokenId,bytes memory _data) internal returns(bool){
+      if(!isContract(_to)){
+         return true;
+      }
+      bytes4 returnData = IERC721Receiver(_to).onERC721Received(msg.sender,_from, _tokenId,_data);
+      return returnData == MAGIC_ERC721_RECEIVED;
+   }
+
+   function isContract(address _to)internal view returns(bool){
+      uint32 size;
+      assembly {
+         size := extcodesize(_to)
+      }
+      return (size > 0);
+   }
 
    function owns(address claimant, uint tokenID)internal view returns(bool){
       return (tokenOwner[tokenID] == claimant);
@@ -147,9 +184,7 @@ contract KittyContract is IERC721,Ownable{
    function operates(address _approved,uint _tokenId) internal view returns(bool){
       return kittyIndexToApproved[_tokenId] == _approved;
    }
-   function operatesAll(address _owner, address _operator) internal view returns (bool){
-     return _operatorApprovals[_owner][_operator];
-   }
+
 
 
 }
