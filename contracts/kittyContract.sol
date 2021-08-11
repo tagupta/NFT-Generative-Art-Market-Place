@@ -27,6 +27,7 @@ contract KittyContract is IERC721,Ownable{
    mapping(uint => address)public tokenOwner; // tokenId => tokenowner
    mapping(uint => address) public kittyIndexToApproved;
    mapping(address => mapping(address => bool))private _operatorApprovals;
+   mapping(address => uint[]) private ownerToKittyIds;
    uint gen0Counter;
    
    modifier checkTransfer(address _from, address _to, uint256 _tokenId){
@@ -39,6 +40,10 @@ contract KittyContract is IERC721,Ownable{
    
    function supportsInterface(bytes4 _interfaceId) external view returns(bool){
       return(_interfaceId == _INTERFACE_ID_ERC721 || _interfaceId == _INTERFACE_ID_ERC165);
+   }
+   
+   function getKittyIds(address _owner) public view returns(uint[] memory){
+      return ownerToKittyIds[_owner];
    }
 
    function getKitty(uint _tokenId) public virtual view returns(uint genes,
@@ -105,11 +110,22 @@ contract KittyContract is IERC721,Ownable{
    function _transfer(address from, address to, uint tokenId) internal{
        //from
        if(from != address(0)){
+        uint len = ownerToKittyIds[from].length;
+        uint rowToDelete = 0;
+        for(uint i = 0 ; i < len ; i++){
+           if(i == tokenId){
+              rowToDelete = i;
+              break;
+           }
+        }
+        ownerToKittyIds[from][rowToDelete] = ownerToKittyIds[from][len-1];
+        ownerToKittyIds[from].pop();
         ownershipTokenCount[from] -= 1;
         delete kittyIndexToApproved[tokenId]; //nice point
        }
        
        //to
+       ownerToKittyIds[to].push(tokenId);
        ownershipTokenCount[to] += 1;
        tokenOwner[tokenId] = to;
 

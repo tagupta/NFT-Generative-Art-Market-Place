@@ -36,7 +36,7 @@
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.8.0+commit.c7dfd78e\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"operator\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"},{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"}],\"name\":\"onERC721Received\",\"outputs\":[{\"internalType\":\"bytes4\",\"name\":\"\",\"type\":\"bytes4\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/D/BlockChain/Ethereum-201/CryptoKitties/academy-kitties-template/contracts/IERC721Receiver.sol\":\"IERC721Receiver\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/D/BlockChain/Ethereum-201/CryptoKitties/academy-kitties-template/contracts/IERC721Receiver.sol\":{\"keccak256\":\"0x3193b9efcb5a0b011f0eb1c6388484d051a796a078731d8c6928d4a2e00572a7\",\"license\":\"UNLICENSED\",\"urls\":[\"bzz-raw://e6740cf169893f09897b57b2b77dff904a20cc9b79932edc16e96b71155032a2\",\"dweb:/ipfs/QmdZKcQoWPTqoPb2S2DiDVHabJaHm6xNDE89TqymXTLoYi\"]}},\"version\":1}",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.0+commit.c7dfd78e\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"operator\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"},{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"}],\"name\":\"onERC721Received\",\"outputs\":[{\"internalType\":\"bytes4\",\"name\":\"\",\"type\":\"bytes4\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/D/BlockChain/Ethereum-201/CryptoKitties/academy-kitties-template/contracts/IERC721Receiver.sol\":\"IERC721Receiver\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/D/BlockChain/Ethereum-201/CryptoKitties/academy-kitties-template/contracts/IERC721Receiver.sol\":{\"keccak256\":\"0xbf89065e8bc3ae2db0bccc6622ee8b024e0a08501edbb2e11115fd1bba58cc9a\",\"license\":\"UNLICENSED\",\"urls\":[\"bzz-raw://e779e109904e4102b19395318a04de1a01aaedf89135c32cb1f430e771f37d25\",\"dweb:/ipfs/QmfDSYshmfZMUpfN5zkmAr7SNzUPZPYAfnDeVNx9tNGJ4v\"]}},\"version\":1}",
   "bytecode": "0x",
   "deployedBytecode": "0x",
   "immutableReferences": {},
@@ -44,7 +44,7 @@
   "deployedGeneratedSources": [],
   "sourceMap": "",
   "deployedSourceMap": "",
-  "source": "// SPDX-License-Identifier: UNLICENSED\r\npragma solidity >0.4.22 <=0.9.0;\r\n\r\ninterface IERC721Receiver{\r\n    function onERC721Received(address operator,address from, uint tokenId, bytes memory data) external returns(bytes4);\r\n}",
+  "source": "// SPDX-License-Identifier: UNLICENSED\r\npragma solidity >0.4.22 <=0.9.0;\r\n\r\ninterface IERC721Receiver{\r\n    function onERC721Received(address operator,address from, uint tokenId, bytes calldata data) external returns(bytes4);\r\n}",
   "sourcePath": "D:/BlockChain/Ethereum-201/CryptoKitties/academy-kitties-template/contracts/IERC721Receiver.sol",
   "ast": {
     "absolutePath": "/D/BlockChain/Ethereum-201/CryptoKitties/academy-kitties-template/contracts/IERC721Receiver.sol",
@@ -183,11 +183,11 @@
                   "name": "data",
                   "nodeType": "VariableDeclaration",
                   "scope": 149,
-                  "src": "179:17:1",
+                  "src": "179:19:1",
                   "stateVariable": false,
-                  "storageLocation": "memory",
+                  "storageLocation": "calldata",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_bytes_memory_ptr",
+                    "typeIdentifier": "t_bytes_calldata_ptr",
                     "typeString": "bytes"
                   },
                   "typeName": {
@@ -203,7 +203,7 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "133:64:1"
+              "src": "133:66:1"
             },
             "returnParameters": {
               "id": 148,
@@ -216,7 +216,7 @@
                   "name": "",
                   "nodeType": "VariableDeclaration",
                   "scope": 149,
-                  "src": "215:6:1",
+                  "src": "217:6:1",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -227,7 +227,7 @@
                     "id": 146,
                     "name": "bytes4",
                     "nodeType": "ElementaryTypeName",
-                    "src": "215:6:1",
+                    "src": "217:6:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes4",
                       "typeString": "bytes4"
@@ -236,20 +236,20 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "214:8:1"
+              "src": "216:8:1"
             },
             "scope": 150,
-            "src": "108:115:1",
+            "src": "108:117:1",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           }
         ],
         "scope": 151,
-        "src": "76:150:1"
+        "src": "76:152:1"
       }
     ],
-    "src": "40:186:1"
+    "src": "40:188:1"
   },
   "legacyAST": {
     "absolutePath": "/D/BlockChain/Ethereum-201/CryptoKitties/academy-kitties-template/contracts/IERC721Receiver.sol",
@@ -388,11 +388,11 @@
                   "name": "data",
                   "nodeType": "VariableDeclaration",
                   "scope": 149,
-                  "src": "179:17:1",
+                  "src": "179:19:1",
                   "stateVariable": false,
-                  "storageLocation": "memory",
+                  "storageLocation": "calldata",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_bytes_memory_ptr",
+                    "typeIdentifier": "t_bytes_calldata_ptr",
                     "typeString": "bytes"
                   },
                   "typeName": {
@@ -408,7 +408,7 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "133:64:1"
+              "src": "133:66:1"
             },
             "returnParameters": {
               "id": 148,
@@ -421,7 +421,7 @@
                   "name": "",
                   "nodeType": "VariableDeclaration",
                   "scope": 149,
-                  "src": "215:6:1",
+                  "src": "217:6:1",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -432,7 +432,7 @@
                     "id": 146,
                     "name": "bytes4",
                     "nodeType": "ElementaryTypeName",
-                    "src": "215:6:1",
+                    "src": "217:6:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes4",
                       "typeString": "bytes4"
@@ -441,20 +441,20 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "214:8:1"
+              "src": "216:8:1"
             },
             "scope": 150,
-            "src": "108:115:1",
+            "src": "108:117:1",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           }
         ],
         "scope": 151,
-        "src": "76:150:1"
+        "src": "76:152:1"
       }
     ],
-    "src": "40:186:1"
+    "src": "40:188:1"
   },
   "compiler": {
     "name": "solc",
@@ -462,7 +462,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.1",
-  "updatedAt": "2021-08-08T13:28:41.202Z",
+  "updatedAt": "2021-08-09T09:31:49.618Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},

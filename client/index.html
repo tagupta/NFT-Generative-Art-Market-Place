@@ -7,16 +7,15 @@
   <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
   <script src="assets/bootstrap/js/popper.js"></script>
   <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-  <!-- <script src="assets/js/web3.min.js"></script>
-  <script src="./abi.js"></script> -->
-
+  <script src="assets/js/web3.min.js"></script>
+  <script src="./abi.js"></script>
 
   <link rel="stylesheet" href="assets/css/mystyle.css">
   <link rel="stylesheet" href="assets/css/cats.css">
   <link rel="stylesheet" href="assets/css/colors.css">
   <link rel="stylesheet" href="assets/css/factory.css">
   <link rel="stylesheet" href="assets/css/frontend.css">
-  <!-- <link rel="stylesheet" href="assets/css/animations.css"> -->
+  <link rel="stylesheet" href="assets/css/animations.css">
   <link rel="stylesheet" href="assets/css/catFace.css">
   <link rel="stylesheet" href="assets/css/catLowerBody.css">
   <link rel="stylesheet" href="assets/css/catUpperBody.css">
@@ -24,34 +23,7 @@
 </head>
   <body>
       <!-- Navigation -->
-    <nav class="navbar navbar-expand-md navbar-light sticky-top">
-        <div class="container-fluid">
-            <span><strong>Crypto Kitties</strong></span>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
-               <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#"><strong>Home</strong></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#"><strong>Market Place</strong></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="catalogue.html"><strong>Catalogue</strong></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="kFactory.html"><strong>K-Factory</strong></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#"><strong>Start</strong></a>
-                    </li>
-                </ul>
-
-            </div>
-        </div>
-    </nav>
+    <div id="menu"></div>
     <!-- Image Slider -->
     <div id="slides" class="carousel slide" data-ride="carousel">
        <ul class="carousel-indicators">
@@ -63,7 +35,7 @@
            <div class="carousel-item active">  
                <img src="assets/img/background.png">
                <div class="carousel-caption">
-                   <h1 class="display-2" >Crypto Kitties</h1>
+                   <h1 class="display-2">Crypto Kitties</h1>
                    <h3>Collect and breed furrever friends!</h3>
                    <button type="button" class="btn btn-outline-light btn-lg">Get your own kitty</button>
                </div>
@@ -86,20 +58,20 @@
     </div>
     <!-- Three Buttons section  -->
      <div id="threeButtons" class="container-fluid padding" style="margin-top: 8vh;">
-       <div class="row text-center padding">
-           <div class="col-xs-12 col-md-4">
+       <div class="row text-center padding d-flex justify-content-around">
+           <div class="col-xs-12 col-md-4 col-lg-3">
             <button type="button" class="light-b-shadow btn btn-outline-light btn-lg" >
                 <h3>Buy and sell cats</h3> 
                 <span>Buy or sell kitty in a market place using crypto currency! You can find all kind or weird and special kitties.</span>
             </button>
            </div>
-           <div class="col-xs-12 col-md-4">
+           <div class="col-xs-12 col-md-4 col-lg-3">
             <button type="button" class="light-b-shadow btn btn-outline-light btn-lg">
                 <h3>Create Collections and earn rewards</h3> 
                 <span>Collect all types of kitties with uinque Cattributes! Earn special kitties from breeding. Sell them or love them</span>
             </button>
            </div>
-           <div class="col-xs-12 col-md-4">
+           <div class="col-xs-12 col-md-4 col-lg-3">
             <button type="button" class="light-b-shadow btn btn-outline-light btn-lg">
                 <h3>Breed adorable cats and unlock rare traits</h3> 
                 <span>Create unique kitties by pairing two cats.Fuse them to get the most rare kitties!</span>
@@ -113,7 +85,8 @@
         <p>Ivan on Tech Academy Crypto Kitties Project</p>
     </footer>
   </body>
-  
-
+  <script src="./index.js"></script>
+  <script src="./eventListeners.js"></script>
+  <script src="assets/js/component.js"></script>
 
 </html>

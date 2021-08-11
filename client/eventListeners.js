@@ -1,25 +1,19 @@
 
-var kittenIndex;
-function listenBirthEvent(){
+ function listenBirthEvent(){
     instance.events.Birth().on('data',function(event){
-        console.log(event);
+        console.log(JSON.stringify(event, null, "    "));
         var eventReturnVal = event.returnValues;
-        $('.notifyHead2').html('Success Notification');
-        $('.notifyBody2').html(`A token has been created successfully.</br>
-                                                        TokenID: ${eventReturnVal.kittenId}</br> 
-                                                        Owner: ${eventReturnVal.owner}</br>
-                                                        DadID: ${eventReturnVal.dadId} </br>
-                                                        MumID: ${eventReturnVal.mumId} </br>
-                                                        Genes: ${eventReturnVal.genes} `);
-        $('.toast').toast('show');
+        $('.notifyHead2').html('A token has been created successfully.');
+            $('.notifyBody2').html(`TokenID: ${eventReturnVal.kittenId}   
+                                    Owner: ${eventReturnVal.owner}    
+                                    DadID: ${eventReturnVal.dadId}    
+                                    MumID: ${eventReturnVal.mumId}    
+                                    Genes: ${eventReturnVal.genes} `);
+            $('.toast').toast('show');
      
-         renderingCats(eventReturnVal.kittenId,eventReturnVal.genes);
 
     }).on('error',function(error, receipt){
         console.log(error);
-        $('.notifyHead2').html('Error Notification');
-        $('.notifyBody2').html('Error occured while processing transaction.');
-        $('.toast').toast('show');
         
     })
 }

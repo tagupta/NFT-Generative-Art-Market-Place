@@ -34,6 +34,14 @@
 .carousel-caption button{
     font-family: system-ui;
 }
+.toast{
+  max-width: 816px;
+  background-color: #DEFABB;
+}
+.toast-header {
+    color: black;
+    background-color: greenyellow;
+}
 .welcome h1{
     font-size: 350%;
     font-weight: 500%;
@@ -61,6 +69,27 @@
     color: #ed5b0d;
 }
 
+#dropdownMenu{
+    height: 29px;
+    position: absolute;
+    top: 0px;
+    right: -16px;
+}
+.dropdown-menu{
+    width: 260px;
+    background-image: linear-gradient(to right,  #84FFFF, #F2BCF8 , #FFEB3B);
+}
+.catInfo{
+    padding: 10px;
+    font-family: monospace;
+}
+.catInfo h3{
+    text-align: center;
+}
+.menu-title{
+    font-size: 250%;
+    font-family: monospace;
+}
 .catGroup { 
     margin-top: 120px;
     width: 50%;    
@@ -68,6 +97,10 @@
 
 #canvas {
     position: absolute;
+}
+
+.m-222 {
+   margin: 1.5rem!important;
 }
 
 .banner {

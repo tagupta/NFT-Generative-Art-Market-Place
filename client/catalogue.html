@@ -7,8 +7,8 @@
         <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
         <script src="assets/bootstrap/js/popper.js"></script>
         <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-        <!-- <script src="assets/js/web3.min.js"></script>
-        <script src="./abi.js"></script> -->
+        <script src="assets/js/web3.min.js"></script>
+        <script src="./abi.js"></script>
       
         <link rel="stylesheet" href="assets/css/mystyle.css">
         <link rel="stylesheet" href="assets/css/cats.css">
@@ -23,187 +23,36 @@
     </head>
     <body>
          <!-- Navigation -->
-    <nav class="navbar navbar-expand-md navbar-light sticky-top">
-        <div class="container-fluid">
-            <span><strong>Crypto Kitties</strong></span>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
-               <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html"><strong>Home</strong></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#"><strong>Market Place</strong></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#"><strong>Catalogue</strong></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="kFactory.html"><strong>K-Factory</strong></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#"><strong>Start</strong></a>
-                    </li>
-                </ul>
+        <div id="menu"></div>
 
+        <div class="header" align="center">
+            <div class="container">
+                <h2 class="menu-title">Catalogue</h2>
             </div>
         </div>
-    </nav>
-     <div class="container-fluid padding" style="margin-top: 8vh;">
-        <div class="row text-center padding catalogueList">
-            <div class="col-lg-4 catBox m-2 light-b-shadow col-xs-12 col-md-4 col-sm-6 displayCat">
-               <div id="catBody">
-                   <div id="catEars">
-                       <div class="ear leftEar">
-                           <div class="innerEar innerLeftEar"></div>
-                       </div>
-                       <div class="ear rightEar">
-                           <div class="innerEar innerRightEar"></div>
-                       </div>
-                   </div>
-                   <div id="catHead" class="catFace">
-                       <div class="catHair">
-                           <div id="h_1" class="hair hair1 mid"></div>
-                           <div id="h_2" class="hair hair2 sides"></div>
-                           <div id="h_3" class="hair hair3 sides"></div>
-                       </div>
-                       <div id="catEyes">
-                           <div class="eyes">
-                               <div class="pupils "> 
-                                   <!-- class="heart smallPupils" -->
-                                   <div id="eyeDecoration" class=""></div>
-                               </div>
-                           </div>
-                           <div class="eyes">
-                              <div class="pupils ">
-                                  <div id="eyeDecoration" class=""></div>
-                              </div>
-                           </div>
-                       </div>
-                   <div id="tongue" class=""></div> 
-                   <div id="catMouth">
-                       <div class="mouth"></div>
-                       <div class="mouth"></div>
-                   </div>
-                   <div id="nose"></div>
-                   <div class="catWhisker">
-                       <div class="whisker1"></div>
-                       <div class="whisker2"></div>
-                       <div class="whisker3"></div>
-                       <div class="whisker4"></div>
-                       <div class="whisker5"></div>
-                       <div class="whisker6"></div>
-                   </div>
-                   </div>
-                    <div id="catLowerBody" class="">
-                    </div>
-                   
-                    <div id="catLowerLowerBody" class="">
-                       <div id="bodyShadow" class=""></div>
-                    </div>
-                 
-                        <div class="foot foot1">
-                            <div class="nail"></div>
-                        </div>
-                        <div class="foot foot2">
-                           <div class="nail"></div>
-                        </div>
-                        <div class="foot foot3">
-                           <div class="nail"></div>
-                        </div>
-                        <div class="foot foot4">
-                           <div class="nail"></div>
-                        </div>
-                        
-                    
-                    <div id="catTail" class="">
-                        <div id="innerTail"></div>
-                    </div>
-                  </div>
+        
+        <div class="container p-3">
+            <div class="row justify-content-around" id="catsDiv">
             </div>
-            <div class="col-lg-4 catBox m-2 light-b-shadow col-xs-12 col-md-4 col-sm-6 displayCat">
-                <div id="catBody">
-                    <div id="catEars">
-                        <div class="ear leftEar">
-                            <div class="innerEar innerLeftEar"></div>
-                        </div>
-                        <div class="ear rightEar">
-                            <div class="innerEar innerRightEar"></div>
-                        </div>
-                    </div>
-                    <div id="catHead" class="catFace">
-                        <div class="catHair">
-                            <div id="h_1" class="hair hair1 mid"></div>
-                            <div id="h_2" class="hair hair2 sides"></div>
-                            <div id="h_3" class="hair hair3 sides"></div>
-                        </div>
-                        <div id="catEyes">
-                            <div class="eyes">
-                                <div class="pupils "> 
-                                    <!-- class="heart smallPupils" -->
-                                    <div id="eyeDecoration" class=""></div>
-                                </div>
-                            </div>
-                            <div class="eyes">
-                               <div class="pupils ">
-                                   <div id="eyeDecoration" class=""></div>
-                               </div>
-                            </div>
-                        </div>
-                    <div id="tongue" class=""></div> 
-                    <div id="catMouth">
-                        <div class="mouth"></div>
-                        <div class="mouth"></div>
-                    </div>
-                    <div id="nose"></div>
-                    <div class="catWhisker">
-                        <div class="whisker1"></div>
-                        <div class="whisker2"></div>
-                        <div class="whisker3"></div>
-                        <div class="whisker4"></div>
-                        <div class="whisker5"></div>
-                        <div class="whisker6"></div>
-                    </div>
-                    </div>
-                     <div id="catLowerBody" class="">
-                     </div>
-                    
-                     <div id="catLowerLowerBody" class="">
-                        <div id="bodyShadow" class=""></div>
-                     </div>
-                  
-                         <div class="foot foot1">
-                             <div class="nail"></div>
-                         </div>
-                         <div class="foot foot2">
-                            <div class="nail"></div>
-                         </div>
-                         <div class="foot foot3">
-                            <div class="nail"></div>
-                         </div>
-                         <div class="foot foot4">
-                            <div class="nail"></div>
-                         </div>
-                         
-                     
-                     <div id="catTail" class="">
-                         <div id="innerTail"></div>
-                     </div>
-                   </div>
-             </div>
-            
-           
         </div>
-     </div>
+        <script>
+            // when page load create the catalog
+            $(document).ready(function () {
+              setTimeout(() => {
+                contractCatalog();
+              }, 2000)
+            });
+          </script>
     
 
     </body>
     <script src="assets/js/colors.js"></script>
     <script src="assets/js/catSettings.js"></script>
     <script src="assets/js/catFactory.js"></script>
-    <script src="assets/js/catalogue.js"></script>
-    <!-- <script src="./index.js"></script> -->
-    <!-- <script src="./eventListeners.js"></script> -->
+    <script src="assets/js/buildCats.js"></script>
+    <script src="assets/js/showCats.js"></script>
+    <script src="./index.js"></script>
+    <script src="./eventListeners.js"></script>
+    <script src="assets/js/component.js"></script>
+
 </html>
