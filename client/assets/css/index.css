@@ -1,0 +1,75 @@
+section{
+ position: relative;
+ overflow: hidden;
+ text-align: center;
+ margin: auto;
+}
+section h1{
+    font-size: 500%;
+    text-transform: uppercase;
+    text-shadow: 1px 1px 15px #000;
+    font-family: monospace;
+}
+section h3{
+    font-size: 250%;
+    font-weight: 500%;
+    text-shadow: 1px 1px 10px #000;
+    padding-bottom: 2rem;
+    font-family: monospace;
+}
+section button{
+    font-family: system-ui;
+}
+.landingImg span{
+    position: absolute;
+    bottom: -50px;
+    background: transparent;
+    border-radius: 50%;
+    pointer-events: none;
+    box-shadow: inset 0 0 10px rgb(236, 232, 232);
+    animation: animate 4s linear infinite;
+}
+.landingImg span:before{
+ content: '';
+ position: absolute;
+ width: 100%;
+ height: 100%;
+ transform: scale(0.25) translate(-70%,-70%);
+ background: radial-gradient(#fff,transparent);
+ border-radius: 50%;
+}
+@keyframes animate {
+    0%{
+        transform: translateY(0%);
+        opacity: 1;
+    }
+    99%{
+        opacity: 1;
+
+    }
+    100%{
+        transform: translateY(-1200%);
+        opacity: 0;
+    }
+}
+.landingImg{
+    height: 530px;
+    background-color: crimson;
+    border-radius: 0% 0% 38% 38%;
+}
+.cat1{
+    transform: rotate(-190deg);
+    position: absolute;
+    top: -53px;
+}
+.cat2{
+    position: absolute;
+    right: -110px;
+    transform: rotate(-99deg);
+    top: -70px;
+}
+.cat3{
+    position: absolute;
+    left: 471px;
+    top: 480px;
+}
