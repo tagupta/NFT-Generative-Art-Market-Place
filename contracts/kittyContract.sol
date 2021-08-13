@@ -78,6 +78,36 @@ contract KittyContract is IERC721,Ownable{
 
      return newID;
    }
+   
+   function breed(uint _dadId, uint _mumId) public returns(uint){
+      require(owns(msg.sender,_dadId),'Dad token does not belong to the owner');
+      require(owns(msg.sender,_mumId),'Mum token does not belong to the owner');
+      Kitty memory dad = kitties[_dadId];
+      Kitty memory mum = kitties[_mumId];
+      uint babyDNA = _mixDNA(dad.genes,mum.genes);
+
+      uint babyGEN = 0;
+      if(_dadId > _mumId){
+         babyGEN = _dadId + 1;
+         babyGEN /= 2;
+      }
+      else if(_dadId < _mumId){
+         babyGEN = _mumId + 1;
+         babyGEN /= 2;
+      }
+      else{
+         babyGEN = _dadId + 1;
+      }
+
+      return _createKitty(_mumId,_dadId,babyDNA,babyGEN,msg.sender);
+   }
+   function _mixDNA(uint dadDNA,uint mumDNA) pure internal returns(uint){
+      uint firstHalf = dadDNA / 100000000;
+      uint secondHalf = mumDNA % 100000000;
+
+      uint newDNA = firstHalf * 100000000 + secondHalf;
+      return newDNA;
+   }
 
    function balanceOf(address owner) public virtual view override returns (uint256 balance){
        balance = ownershipTokenCount[owner];

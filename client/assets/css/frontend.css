@@ -26,6 +26,9 @@
     color: black;
     background-color: greenyellow;
 }
+#breedBtn{
+    margin-top: 20px;
+}
 .welcome h1{
     font-size: 350%;
     font-weight: 500%;

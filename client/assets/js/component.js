@@ -30,9 +30,9 @@ $(document).ready(function () {
                                 <li class="nav-item">
                                     <a class="nav-link" href="kFactory.html"><strong>K-Factory</strong></a>
                                 </li>
-                                <li class="nav-item">
-                                    <button type="button" class="btn btn-success" onclick="start()">${buttonTxt}</button>
-                                </li>
+                                
+                                <button type="button" class="btn btn-success nav-item" onclick="start()" style="margin: 0.5rem">${buttonTxt}</button>
+                                
                             </ul>
                         </div>
                     </div>
