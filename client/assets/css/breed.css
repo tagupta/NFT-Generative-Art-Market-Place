@@ -1,9 +1,11 @@
 .parentBox{
     background-color: #e2efff;
     border-radius: 10px;
-    padding-top: 30px;
+    padding-top: 21px;
     background-color: floralwhite;
-    padding-bottom: 22px;
+    padding-bottom: 49px;
+    padding-left: 55px;
+    padding-right: 35px;
 }
 .parentBox img{
     height: 200px;
@@ -16,4 +18,19 @@
     .modal-lg, .modal-xl {
         max-width: 1213px;
     }
+}
+#breedingCattributes{
+    position: absolute;
+    bottom: 0px;
+}
+#sireIDSpan{
+    display: none;
+}
+
+#dameIDSpan{
+    display: none;
+}
+.alertBox{
+    margin-bottom: 20px;
+    display: none;
 }

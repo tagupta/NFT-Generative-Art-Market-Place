@@ -10,7 +10,13 @@
                                     MumID: ${eventReturnVal.mumId}    
                                     Genes: ${eventReturnVal.genes} `);
             $('.toast').toast('show');
-     
+          $('.alertBox').css('display','flex');
+          if($('#sireID').html() != undefined && $('#dameID').html() != undefined){
+            setTimeout(() =>{
+                window.location.href = 'catalogue.html'; 
+              },2000);
+          }
+          
 
     }).on('error',function(error, receipt){
         console.log(error);

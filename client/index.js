@@ -2,7 +2,7 @@ var web3 = new Web3(Web3.givenProvider);
 
 var instance;
 var user;
-var contractAddress = "0x64582d9F0be3D5d34aa3e54c33C45a686Ea2D219";
+var contractAddress = "0x2f805b4AC34a13e47F1B3Fbd783868b518196954";
 var loggedIn = false;
 var contractOwner;
 function start(){
@@ -75,3 +75,14 @@ async function appendBreed(id,gen){
   var kitty = await instance.methods.getKitty(id).call();
   breedingCats(kitty.genes,id,kitty.generation,gen)
 }
+
+async function breed(dadId,mumId){
+  instance.methods.breed(dadId,mumId).send({},function(error,txHash){
+    if (error) {
+      console.log("Error occured while breeding "+ error);
+    } else {
+      console.log("Success on breeding "+ txHash);
+    }
+
+  });
+};

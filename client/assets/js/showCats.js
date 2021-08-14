@@ -4,8 +4,36 @@ function appendCat(dna, id, gen) {
 }
 
 function breedingCats(dna,id,gen,gender){
-   catBox(id, gen, dna);
+   catBreedBox(id, gen, dna);
    styleCat(formatDNA(dna),id);
+   $(`#${id}`).attr('onclick', 'selectBreed("' + dna + '","' + id + '","' + gen + '","' + gender + '")');
+}
+function selectBreed(dna,id,gen,gender){
+  var body = catBody();
+
+  $(`#${gender}`).html(body);
+  styleCat(formatDNA(dna),gender);
+
+  $(`#${gender}Cattributes`).css('visibility','visible');
+  $(`#${gender}GEN`).html(gen);
+  $(`#${gender}DNA`).html(dna);
+  $(`#${gender}ID`).html(id);
+
+  $('#catModal').modal('hide'); 
+  
+  readyToBreed();
+}
+
+function readyToBreed(){
+   var dadId = $('#sireID').html();
+   var mumID = $('#dameID').html();
+
+   if(dadId != "" && mumID != ""){
+      $('#breedingStart').removeClass('disabled');
+      $('#breedingStart').attr('onclick', 'breed("' + dadId + '","' + mumID + '")');
+      return true;
+   }
+   return false;
 }
 
 function catBox(id, gen, dna) {
@@ -13,6 +41,14 @@ function catBox(id, gen, dna) {
       `<div class="col-lg-3 catBoxxx m-222 light-b-shadow col-xs-12 col-md-4 col-sm-6" id="${id}">
             ${catDetails(id,gen,dna)}
             ${catBody()}
+       </div>`
+    $('#catsDiv').append(catDiv);
+}
+function catBreedBox(id, gen, dna) {
+   let catDiv =
+      `<div class="col-lg-3 catBoxxx m-222 light-b-shadow col-xs-12 col-md-4 col-sm-6" id="${id}">
+            ${catBody()}
+            ${breedCattributes(id,gen,dna)}
        </div>`
     $('#catsDiv').append(catDiv);
 }
@@ -39,6 +75,17 @@ function catDetails(id,gen,dna){
          </div>
      </div>`;
      return catDetails;
+}
+
+function breedCattributes(id,gen,dna){
+   var cattributes = 
+   `<div id="breedingCattributes">
+         <span><h4><b>GEN : </b>${gen}</h4></span>
+         <span><h4><b>DNA : </b>${dna}</h4></span>
+         <span><h4><b>ID : </b>${id}</h4></span> 
+   </div>`;
+
+   return cattributes;
 }
 function catBody() {
    let catBody =
