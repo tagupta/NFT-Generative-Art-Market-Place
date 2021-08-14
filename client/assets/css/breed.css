@@ -1,7 +1,19 @@
 .parentBox{
     background-color: #e2efff;
     border-radius: 10px;
-    padding-top: 50px;
-    padding-left: 42px;
-    padding-bottom: 100px;
+    padding-top: 30px;
+    background-color: floralwhite;
+    padding-bottom: 22px;
+}
+.parentBox img{
+    height: 200px;
+    margin-bottom: 50px;
+}
+#breedingStart{
+    border-radius: 22px;
+}
+@media (min-width: 992px){
+    .modal-lg, .modal-xl {
+        max-width: 1213px;
+    }
 }

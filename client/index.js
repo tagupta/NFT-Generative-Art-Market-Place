@@ -62,6 +62,16 @@ $("#newgen0Kitty").click( ()=>{
 
 async function appendKitty(id) {
   var kitty = await instance.methods.getKitty(id).call();
-  console.log(kitty.genes + " " + id + " " + kitty.generation);
   appendCat(kitty.genes,id,kitty.generation)
+}
+
+async function breedKitties(gen){
+  var arrayId = await instance.methods.getKittyIds(contractOwner).call();
+  for(var i = 0 ; i < arrayId.length ; i++){
+    appendBreed(arrayId[i],gen);
+  }
+}
+async function appendBreed(id,gen){
+  var kitty = await instance.methods.getKitty(id).call();
+  breedingCats(kitty.genes,id,kitty.generation,gen)
 }

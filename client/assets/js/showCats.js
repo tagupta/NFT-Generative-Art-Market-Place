@@ -2,7 +2,12 @@ function appendCat(dna, id, gen) {
    catBox(id, gen, dna);
    styleCat(formatDNA(dna),id);
 }
-// col-lg-4 pointer fit-content
+
+function breedingCats(dna,id,gen,gender){
+   catBox(id, gen, dna);
+   styleCat(formatDNA(dna),id);
+}
+
 function catBox(id, gen, dna) {
    let catDiv =
       `<div class="col-lg-3 catBoxxx m-222 light-b-shadow col-xs-12 col-md-4 col-sm-6" id="${id}">
