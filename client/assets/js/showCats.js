@@ -1,6 +1,29 @@
 function appendCat(dna, id, gen) {
-   catBox(id, gen, dna);
+   var params = new URLSearchParams(window.location.search);
+   if(params.has('action') && params.get('action') == "sell"){
+      catBreedBox(id, gen, dna);
+      $(`#${id}`).attr('onclick', 'selectSellKitty("' + id + '")');
+      $(`#${id}`).hover(
+         function() {
+           $( this ).css("background-image","linear-gradient(to right,  #84FFFF, #F2BCF8 , #FFEB3B)");
+         }, function() {
+           $( this ).css("background-image","");
+         }
+       );
+   }
+   else{
+      catBox(id, gen, dna);
+   }
    styleCat(formatDNA(dna),id);
+}
+
+function displayCat(birthTime,gen,dna,id){
+   renderCatBody(birthTime,gen,dna,id);
+   // renderingcatDetails(birthTime,gen,dna,id);
+   styleCat(formatDNA(dna),id);
+}
+function selectSellKitty(id){
+   window.location.href = `catDetails.html?action=sell&id=${id}`; 
 }
 
 function breedingCats(dna,id,gen,gender){
@@ -8,6 +31,7 @@ function breedingCats(dna,id,gen,gender){
    styleCat(formatDNA(dna),id);
    $(`#${id}`).attr('onclick', 'selectBreed("' + dna + '","' + id + '","' + gen + '","' + gender + '")');
 }
+
 function selectBreed(dna,id,gen,gender){
   var body = catBody();
 
@@ -44,13 +68,38 @@ function catBox(id, gen, dna) {
        </div>`
     $('#catsDiv').append(catDiv);
 }
+
 function catBreedBox(id, gen, dna) {
    let catDiv =
-      `<div class="col-lg-3 catBoxxx m-222 light-b-shadow col-xs-12 col-md-4 col-sm-6" id="${id}">
+      `<div class="col-lg-3 catBoxModal m-222 light-b-shadow col-xs-12 col-md-4 col-sm-6" id="${id}">
             ${catBody()}
             ${breedCattributes(id,gen,dna)}
        </div>`
     $('#catsDiv').append(catDiv);
+}
+
+function renderCatBody(birthTime,gen,dna,id){
+   let catDiv =
+      `<div class="col-lg-4 catBox m-2 light-b-shadow" id="${id}">
+            ${catBody()}
+       </div>
+       <div class="col-lg-7 cattributes m-2 light-b-shadow">
+         <span><h4><b>DNA: </b>${dna}</h4></span> 
+         <span><h4><b>BIRTH TIME: </b>${birthTime}</h4></span> 
+         <span><h4><b>GENERATION: </b>${gen}</h4></span>
+         <span><h4><b>ID : </b>${id}</h4></span> 
+      </div>`;
+    $('#catsDiv').append(catDiv);
+}
+function renderingcatDetails(birthTime,gen,dna,id){
+   var catDetails = 
+   `<div class="col-lg-7 cattributes m-2 light-b-shadow">
+      <span><h4><b>DNA: </b>${dna}</h4></span> 
+      <span><h4><b>BIRTH TIME: </b>${birthTime}</h4></span> 
+      <span><h4><b>GENERATION: </b>${gen}</h4></span>
+      <span><h4><b>ID : </b>${id}</h4></span> 
+    </div>`;
+    $('#catsDiv').append(catDetails);
 }
 function catDetails(id,gen,dna){
    var catDetails = 

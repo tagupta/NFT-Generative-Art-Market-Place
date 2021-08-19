@@ -30,6 +30,9 @@ contract KittyContract is IERC721,Ownable{
    mapping(address => uint[]) private ownerToKittyIds;
    uint gen0Counter;
    
+   constructor(){
+     _createKitty(0,0,type(uint).max,0,address(0));
+   }
    modifier checkTransfer(address _from, address _to, uint256 _tokenId){
       require(_tokenId < kitties.length,'Invalid token Id');
       require(_to != address(0),"Receiver address should not be address(0)");
@@ -101,12 +104,39 @@ contract KittyContract is IERC721,Ownable{
 
       return _createKitty(_mumId,_dadId,babyDNA,babyGEN,msg.sender);
    }
-   function _mixDNA(uint dadDNA,uint mumDNA) pure internal returns(uint){
-      uint firstHalf = dadDNA / 100000000;
-      uint secondHalf = mumDNA % 100000000;
+   function _mixDNA(uint dadDNA,uint mumDNA) view internal returns(uint){
+      uint[8] memory geneArray;
+      uint8 random = uint8(block.timestamp % 256);
+      uint index = 7;
 
-      uint newDNA = firstHalf * 100000000 + secondHalf;
-      return newDNA;
+      for(uint i = 1 ; i <= 128 ; i*=2){
+       if(random & i != 0){
+          //mum
+         geneArray[index] = mumDNA % 100;
+       }
+       else{
+         geneArray[index] = dadDNA % 100;
+
+       }
+       mumDNA = mumDNA / 100;
+       dadDNA = dadDNA / 100;
+       if(i != 128){index = index-1;}
+      }
+
+      for(uint i = 0 ; i < 4 ; i++){
+          uint8 pos = uint8(block.timestamp % 8); //0-7
+          uint8 newRandom = uint8(block.timestamp % 100);//0-99
+          geneArray[pos] = newRandom;
+      }
+      
+      uint newGene = 0;
+      for(uint i = 0 ; i < 8 ; i++){
+         newGene = newGene + geneArray[i];
+         if(i != 7){
+           newGene = newGene * 100;
+         } 
+      }
+      return newGene;
    }
 
    function balanceOf(address owner) public virtual view override returns (uint256 balance){

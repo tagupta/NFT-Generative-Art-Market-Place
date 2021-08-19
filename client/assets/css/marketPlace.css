@@ -1,0 +1,13 @@
+.shopButton{
+    height: 67px;
+}
+.shopButton button{
+    border-radius: 35px;
+    font-size: large;
+}
+.modal-header{
+    background-color: crimson;
+}
+#catsDiv{
+    margin-top: 68px;
+}

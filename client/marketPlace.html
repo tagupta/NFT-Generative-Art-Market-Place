@@ -1,0 +1,89 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Market Place</title>
+        <script type="text/javascript" src="assets/js/jquery-3.4.1.js"></script>
+        <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+        <script src="assets/bootstrap/js/popper.js"></script>
+        <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+        <script src="assets/js/web3.min.js"></script>
+        <script src="./abi.js"></script>
+      
+        <link rel="stylesheet" href="assets/css/mystyle.css">
+        <link rel="stylesheet" href="assets/css/cats.css">
+        <link rel="stylesheet" href="assets/css/colors.css">
+        <link rel="stylesheet" href="assets/css/factory.css">
+        <link rel="stylesheet" href="assets/css/frontend.css">
+        <link rel="stylesheet" href="assets/css/animations.css">
+        <link rel="stylesheet" href="assets/css/catFace.css">
+        <link rel="stylesheet" href="assets/css/catLowerBody.css">
+        <link rel="stylesheet" href="assets/css/catUpperBody.css">
+        <link rel="stylesheet" href="assets/css/marketPlace.css">
+
+      
+    </head>
+    <body>
+         <!-- Navigation -->
+        <div id="menu"></div>
+
+        <div class="header" align="center">
+            <div class="container p-5">
+                <h2 class="menu-title">Market Place</h2>
+                <!-- <a href="breed.html">
+                    <button type="button" class="btn btn-danger">Breed</button>
+                </a> -->
+            </div>
+        </div>
+       <div class="container">
+           <div class="row justify-content-around shopButton">
+              <button class="btn btn-danger col-lg-4" id="buyKitty">Buy Kitty</button>
+              <a href="catalogue.html?action=sell">
+                <button class="btn btn-danger col-lg-4" id="sellKitty">Sell Kitty</button>
+              </a>
+           </div>
+           <div class="row justify-content-around" id="catsDiv">
+           </div>
+       </div>
+        
+         <!-- Modal -->
+         <div class="modal fade bd-example-modal-lg" id="approveModal" tabindex="-1" role="dialog" aria-labelledby="catModalTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalTitle"><b>Important Alert</b></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Please approve the Market Place to buy/sell kitties</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" data-dismiss="modal" onclick="approveMarketPlace()">Approve</button>
+                        <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            // when page load create the catalog
+            $(document).ready(function () {
+              setTimeout(() => {
+                contractMarket();
+              }, 1000)
+            });
+          </script>
+    
+
+    </body>
+    <script src="assets/js/colors.js"></script>
+    <script src="assets/js/catSettings.js"></script>
+    <script src="assets/js/catFactory.js"></script>
+    <script src="assets/js/buildCats.js"></script>
+    <script src="assets/js/showCats.js"></script>
+    <script src="./index.js"></script>
+    <script src="./eventListeners.js"></script>
+    <script src="assets/js/component.js"></script>
+
+</html>

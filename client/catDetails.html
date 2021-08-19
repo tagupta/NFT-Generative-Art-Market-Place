@@ -2,7 +2,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>My Crypto Kitties</title>
+        <title>Cat Details</title>
         <script type="text/javascript" src="assets/js/jquery-3.4.1.js"></script>
         <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
         <script src="assets/bootstrap/js/popper.js"></script>
@@ -19,7 +19,19 @@
         <link rel="stylesheet" href="assets/css/catFace.css">
         <link rel="stylesheet" href="assets/css/catLowerBody.css">
         <link rel="stylesheet" href="assets/css/catUpperBody.css">
-      
+      <script type="text/javascript"> 
+       var params = new URLSearchParams(window.location.search);
+       var action;
+       if(params.has('action')){
+           if(params.get('action') == "sell"){
+            action = "Sell";
+           }
+           else{
+            action = "Buy";
+           }
+       }
+       var str = "Cat Details : " + action;
+      </script>
     </head>
     <body>
          <!-- Navigation -->
@@ -27,25 +39,26 @@
 
         <div class="header" align="center">
             <div class="container p-5">
-                <h2 class="menu-title">Catalogue</h2>
-                <a href="breed.html">
+                <h2 class="menu-title"></h2>
+                <!-- <a href="breed.html">
                     <button type="button" class="btn btn-danger breedBtn">Breed</button>
-                </a>
+                </a> -->
             </div>
         </div>
        
         
-        <div class="container">
-            <div class="row justify-content-around" id="catsDiv">
-            </div>
+        <div class="container p-5">
+            <div class="row" id="catsDiv">
+            </div>  
         </div>
         <script>
             // when page load create the catalog
             $(document).ready(function () {
-              setTimeout(() => {
-                contractCatalog();
-              }, 1000)
+             $('.menu-title').html(str);
             });
+            setTimeout(()=>{
+                singleKitty(params.get('id'))
+            },1000);
           </script>
     
 

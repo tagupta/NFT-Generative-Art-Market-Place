@@ -1,25 +1,32 @@
 var web3 = new Web3(Web3.givenProvider);
 
 var instance;
+var marketInstance;
 var user;
-var contractAddress = "0x2f805b4AC34a13e47F1B3Fbd783868b518196954";
+var contractAddress = "0xbD8F856CAb1Ea91D59B1C2A151e3aaf725c115Ed";
+var marketAddress = "0xfC0FcD529506b3891c655F82e40Fc2FCbc0CCb31";
 var loggedIn = false;
 var contractOwner;
+var isFirst = false;
+
 function start(){
     if(loggedIn){
         return true;
     }
     window.ethereum.enable().then((accounts)=>{
         loggedIn = true;
-        instance = new web3.eth.Contract(abi,contractAddress,{from: accounts[0]});
+        instance = new web3.eth.Contract(abi.kittyContract,contractAddress,{from: accounts[0]});
+        marketInstance = new web3.eth.Contract(abi.kittyMarketPlace,marketAddress,{from: accounts[0]});
         user = accounts[0];
-        console.log(instance);
         location.reload();
     });
 }
 $(document).ready(()=>{
     window.ethereum.enable().then((accounts)=>{
-        instance = new web3.eth.Contract(abi,contractAddress,{from: accounts[0]});
+        instance = new web3.eth.Contract(abi.kittyContract,contractAddress,{from: accounts[0]});
+        marketInstance = new web3.eth.Contract(abi.kittyMarketPlace,marketAddress,{from: accounts[0]});
+        console.log(instance);
+        console.log(marketInstance);
         user = accounts[0];
         instance.methods.owner().call().then(test => {
           contractOwner = test;
@@ -28,7 +35,8 @@ $(document).ready(()=>{
         
     });
     web3.eth.getAccounts((err, accounts) => {
-        instance = new web3.eth.Contract(abi,contractAddress,{from: accounts[0]});
+        instance = new web3.eth.Contract(abi.kittyContract,contractAddress,{from: accounts[0]});
+        marketInstance = new web3.eth.Contract(abi.kittyMarketPlace,marketAddress,{from: accounts[0]});
         if (accounts.length == 0) {
           loggedIn = false;
         } else {
@@ -54,23 +62,61 @@ $("#newgen0Kitty").click( ()=>{
 });
 
  async function contractCatalog(){
-  var arrayId = await instance.methods.getKittyIds(contractOwner).call();
+  var arrayId = await instance.methods.getKittyIds(user).call();
   for(var i = 0 ; i < arrayId.length ; i++){
-    appendKitty(arrayId[i]);
+    if(arrayId[i] != 0){
+      appendKitty(arrayId[i]);
+    }
+  }
+}
+async function contractMarket(){
+  var isApproved = await instance.methods.isApprovedForAll(user,marketAddress).call();
+  if(isApproved == true){
+    getInventory();
+  }
+  else{
+    $('#approveModal').modal('show');
   }
 }
 
+async function approveMarketPlace(){
+  await instance.methods.setApprovalForAll(marketAddress,true).send({},function(error,txHash){
+    if (error) {
+      console.log("Error occured while approving Market Place "+ error);
+    } else {
+      console.log("Successfully approved Market Place"+ txHash);
+    }
+  });
+}
+
+async function getInventory(){
+  var arrayId = await marketInstance.methods.getAllTokenOnSale().call();
+  for(var i = 0 ; i < arrayId.length ; i++){
+    if(arrayId[i] != 0){
+      appendKitty(arrayId[i]);
+    }
+  }
+}
 async function appendKitty(id) {
   var kitty = await instance.methods.getKitty(id).call();
   appendCat(kitty.genes,id,kitty.generation)
 }
 
+async function singleKitty(id){
+  var kitty = await instance.methods.getKitty(id).call();
+  displayCat(kitty.birthTime,kitty.generation,kitty.genes,id);
+}
+
 async function breedKitties(gen){
+  if(isFirst == true) $('#catsDiv').html("");
+  
   var arrayId = await instance.methods.getKittyIds(contractOwner).call();
   for(var i = 0 ; i < arrayId.length ; i++){
     appendBreed(arrayId[i],gen);
   }
+  isFirst = true;
 }
+
 async function appendBreed(id,gen){
   var kitty = await instance.methods.getKitty(id).call();
   breedingCats(kitty.genes,id,kitty.generation,gen)

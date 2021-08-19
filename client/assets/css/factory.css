@@ -1,7 +1,7 @@
 .catBox {
     background-color: #e2efff;
+    padding-top: 48px;
     border-radius: 10px;
-    padding-top: 50px;
     padding-left: 42px;
     padding-bottom: 100px;
 }
@@ -10,10 +10,20 @@
     background-color: #e2efff;
     border-radius: 10px;
     padding-left: 42px;
+    padding-bottom: 78px;
+    /* padding-top: 20px; */
+}
+.catBoxModal {
+    background-color: #e2efff;
+    border-radius: 10px;
+    padding-left: 42px;
     padding-bottom: 126px;
     padding-top: 20px;
 }
-
+#breedingCattributes{
+    position: absolute;
+    bottom: 0px;
+}
 .cattributes {
     padding: 25px;
     background-color: #ededed;

@@ -22,7 +22,7 @@ $(document).ready(function () {
                                     <a class="nav-link" href="index.html"><strong>Home</strong></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="index.html"><strong>Market Place</strong></a>
+                                    <a class="nav-link" href="marketPlace.html"><strong>Market Place</strong></a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="catalogue.html"><strong>Catalogue</strong></a>
