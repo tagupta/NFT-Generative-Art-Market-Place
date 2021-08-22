@@ -11,3 +11,9 @@
 #catsDiv{
     margin-top: 68px;
 }
+.form-row{
+    padding-bottom: 20px;
+}
+.form-row label{
+    margin: 0.5rem;
+}

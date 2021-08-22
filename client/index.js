@@ -3,8 +3,8 @@ var web3 = new Web3(Web3.givenProvider);
 var instance;
 var marketInstance;
 var user;
-var contractAddress = "0xbD8F856CAb1Ea91D59B1C2A151e3aaf725c115Ed";
-var marketAddress = "0xfC0FcD529506b3891c655F82e40Fc2FCbc0CCb31";
+var contractAddress = "0xfBDC0f091AF2Db65bb592B8d6ab6236f5Bc17B85";
+var marketAddress = "0x2a6E04BCB8987ad3b8A206B01faE64A641760010";
 var loggedIn = false;
 var contractOwner;
 var isFirst = false;
@@ -32,6 +32,7 @@ $(document).ready(()=>{
           contractOwner = test;
         });
         listenBirthEvent();
+        listenMarketTransactionEvent();
         
     });
     web3.eth.getAccounts((err, accounts) => {
@@ -87,10 +88,14 @@ async function approveMarketPlace(){
       console.log("Successfully approved Market Place"+ txHash);
     }
   });
+  getInventory();
 }
 
 async function getInventory(){
   var arrayId = await marketInstance.methods.getAllTokenOnSale().call();
+  if(arrayId.length >=1){
+    $('#buyKitty').removeClass('disabled');
+  }
   for(var i = 0 ; i < arrayId.length ; i++){
     if(arrayId[i] != 0){
       appendKitty(arrayId[i]);
@@ -102,15 +107,22 @@ async function appendKitty(id) {
   appendCat(kitty.genes,id,kitty.generation)
 }
 
-async function singleKitty(id){
+async function singleKitty(id,action){
   var kitty = await instance.methods.getKitty(id).call();
-  displayCat(kitty.birthTime,kitty.generation,kitty.genes,id);
+  if(action == "Buy"){
+    var offerDetails = await marketInstance.methods.getOffer(id).call();
+    var ethPrice =  Web3.utils.fromWei(offerDetails.price,"ether");
+    displayCat(kitty.birthTime,kitty.generation,kitty.genes,id,action,ethPrice);
+  }else{
+    displayCat(kitty.birthTime,kitty.generation,kitty.genes,id,action,0);
+  }
+  
 }
 
 async function breedKitties(gen){
   if(isFirst == true) $('#catsDiv').html("");
   
-  var arrayId = await instance.methods.getKittyIds(contractOwner).call();
+  var arrayId = await instance.methods.getKittyIds(user).call();
   for(var i = 0 ; i < arrayId.length ; i++){
     appendBreed(arrayId[i],gen);
   }
@@ -132,3 +144,39 @@ async function breed(dadId,mumId){
 
   });
 };
+
+async function createOffer(id){
+ var price = $("#kittyPrice").val();
+ var amount = web3.utils.toWei(price,"ether");
+  await marketInstance.methods.setOffer(amount,id).send({},function(error,txHash){
+    if (error) {
+      console.log("Error occured while creating offer: "+error);
+    } else {
+      console.log("Success on offer creation: "+txHash);
+    }
+  });
+
+}
+
+async function removeOffer(id){
+  await marketInstance.methods.removeOffer(id).send({},function(error,txHash){
+    if (error) {
+      console.log("Error while removing offer: "+error);
+    } else {
+      console.log("Success on offer removal"+ txHash);
+    }
+  });
+}
+
+async function buyingKitty(id,price){
+  var newPrice = price.toString();
+  var amount = web3.utils.toWei(newPrice,"ether");
+  console.log('amount' + amount);
+  await marketInstance.methods.buyKitty(id).send({value: amount},function(error,txHash){
+    if (error) {
+      console.log("Error while buying kitties: "+error);
+    } else {
+      console.log("Success on kitty purchase: "+txHash);
+    }
+  });
+}

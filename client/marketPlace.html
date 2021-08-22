@@ -37,10 +37,8 @@
         </div>
        <div class="container">
            <div class="row justify-content-around shopButton">
-              <button class="btn btn-danger col-lg-4" id="buyKitty">Buy Kitty</button>
-              <a href="catalogue.html?action=sell">
-                <button class="btn btn-danger col-lg-4" id="sellKitty">Sell Kitty</button>
-              </a>
+              <button class="btn btn-danger col-lg-4 disabled" id="buyKitty" onclick="location.href='marketPlace.html?action=buy';">Buy Kitty</button>
+              <button class="btn btn-danger col-lg-4" id="sellKitty" onclick="location.href='catalogue.html?action=sell';">Sell Kitty</button>
            </div>
            <div class="row justify-content-around" id="catsDiv">
            </div>
@@ -74,7 +72,6 @@
               }, 1000)
             });
           </script>
-    
 
     </body>
     <script src="assets/js/colors.js"></script>

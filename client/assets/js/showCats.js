@@ -11,19 +11,33 @@ function appendCat(dna, id, gen) {
          }
        );
    }
+   else if(params.has('action') && params.get('action') == "buy"){
+      catBreedBox(id, gen, dna);
+      $(`#${id}`).attr('onclick', 'selectBuyKitty("' + id + '")');
+      $(`#${id}`).hover(
+         function() {
+           $( this ).css("background-image","linear-gradient(to right,  #84FFFF, #F2BCF8 , #FFEB3B)");
+         }, function() {
+           $( this ).css("background-image","");
+         }
+       );
+   }
    else{
       catBox(id, gen, dna);
    }
    styleCat(formatDNA(dna),id);
 }
 
-function displayCat(birthTime,gen,dna,id){
-   renderCatBody(birthTime,gen,dna,id);
-   // renderingcatDetails(birthTime,gen,dna,id);
+function displayCat(birthTime,gen,dna,id,action,price){
+   renderCatBody(birthTime,gen,dna,id,action,price);
    styleCat(formatDNA(dna),id);
 }
 function selectSellKitty(id){
    window.location.href = `catDetails.html?action=sell&id=${id}`; 
+}
+
+function selectBuyKitty(id){
+   window.location.href = `catDetails.html?action=buy&id=${id}`;
 }
 
 function breedingCats(dna,id,gen,gender){
@@ -77,19 +91,90 @@ function catBreedBox(id, gen, dna) {
        </div>`
     $('#catsDiv').append(catDiv);
 }
-
-function renderCatBody(birthTime,gen,dna,id){
+function timeConverter(UNIX_timestamp){
+   var a = new Date(UNIX_timestamp * 1000);
+   var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+   var year = a.getFullYear();
+   var month = months[a.getMonth()];
+   var date = a.getDate();
+   var hour = a.getHours();
+   var min = a.getMinutes();
+   var sec = a.getSeconds();
+   var time = date +  month +  year + "_" + hour + ':' + min + ':' + sec ;
+   return time;
+ }
+function renderCatBody(birthTime,gen,dna,id,action,price){
+   var time = timeConverter(birthTime);
    let catDiv =
       `<div class="col-lg-4 catBox m-2 light-b-shadow" id="${id}">
             ${catBody()}
        </div>
-       <div class="col-lg-7 cattributes m-2 light-b-shadow">
-         <span><h4><b>DNA: </b>${dna}</h4></span> 
-         <span><h4><b>BIRTH TIME: </b>${birthTime}</h4></span> 
-         <span><h4><b>GENERATION: </b>${gen}</h4></span>
-         <span><h4><b>ID : </b>${id}</h4></span> 
-      </div>`;
+       <div class="col-lg-6 cattributes m-2 light-b-shadow">
+    <form>
+        <div class="form-row">
+          <label for="dnaOutput" class="col-lg-4"><b>DNA :</b></label>
+          <input type="text" class="form-control col-lg-7" id="dnaOutput" value=${dna} readonly>
+        </div>
+        <div class="form-row">
+            <label for="birthTimeOutput" class="col-lg-4"><b>BIRTH TIME :</b></label>
+            <input type="text" class="form-control col-lg-7" id="birthTimeOutput" value=${time} readonly>
+        </div>
+        <div class="form-row">
+            <label for="genOutput" class="col-lg-4"><b>GENERATION :</b></label>
+            <input type="text" class="form-control col-lg-7" id="genOutput" value=${gen} readonly>
+        </div>
+        <div class="form-row">
+            <label for="IdOutput" class="col-lg-4"><b>ID :</b></label>
+            <input type="text" class="form-control col-lg-7" id="IdOutput" value=${id} readonly>
+        </div>
+        ${marketMainDiv(action,id,price)}
+    </form>
+    
+ </div>`;
     $('#catsDiv').append(catDiv);
+}
+
+function marketMainDiv(action,id,price){
+if(action == "Sell"){
+  var actionDiv = 
+   `<div class="form-row" style="position: absolute;bottom: 38px;">
+         <div class="col-lg-3">
+            <button type="button" class="btn btn-success sellKitty" onclick=createOffer(${id})>Sell</button>
+         </div>
+         <div class="col-lg-5 input-group">
+               <input type="text" class="form-control" id="kittyPrice">
+               <div class="input-group-append">
+                  <span class="input-group-text">Ether</span>
+               </div>
+         </div>
+         <div class="col-lg-4">
+               <button type="button" class="btn btn-danger disabled cancelOffer" onclick=removeOffer(${id})>Cancel Offer</button>
+         </div>
+   </div>`;
+   return actionDiv;
+}
+else if(action == "Buy"){
+   var amt = price.toString();
+  var actionDiv = 
+     `<div class="form-row" style="position: absolute;bottom: 38px;">   
+         <div class="col-lg-3" style="width:180px">
+             <label for="buy"><b>BUY AT :</b></label>
+         </div>    
+     
+         <div class="col-lg-5 input-group" style="width: 128px;">
+               <span class="input-group-text">${amt}</span>
+               <div class="input-group-append">
+                  <span class="input-group-text">Ether</span>
+               </div>
+         </div>
+         <div class="col-lg-4">
+               <button type="button" class="btn btn-success buyKitty" onclick=buyingKitty(${id},${amt})>Buy</button>
+         </div>
+         
+      </div>`;
+  return actionDiv;
+}
+
 }
 function renderingcatDetails(birthTime,gen,dna,id){
    var catDetails = 

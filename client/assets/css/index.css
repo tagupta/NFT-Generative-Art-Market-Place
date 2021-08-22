@@ -2,13 +2,21 @@ section{
  position: relative;
  overflow: hidden;
  text-align: center;
- margin: auto;
+ margin-left: auto;
+ margin-right: auto;
+ margin-top: 50px;
+}
+#happyCat{
+    height: 229px;
+}
+#black_cat{
+    height: 180px;
 }
 section h1{
     font-size: 500%;
     text-transform: uppercase;
-    color: white;
-    text-shadow: 1px 1px 15px #fff;
+    /* color: white;
+    text-shadow: 1px 1px 15px #fff; */
     font-family: monospace;
 }
 section h3{
@@ -56,23 +64,8 @@ section button{
 }
 .landingImg{
     height: 530px;
-    background-color: crimson;
-    /* border-radius: 0% 0% 38% 38%; */
+    background-color: #FDD835;
 }
-.cat1{
-    transform: rotate(-190deg);
-    position: absolute;
-    top: -53px;
-}
-.cat2{
-    position: absolute;
-    right: -110px;
-    transform: rotate(-99deg);
-    top: -70px;
-}
-.cat3{
-    position: absolute;
-    left: -147px;
-    top: 510px;
-    transform: rotate(45deg);
+#pawPrint1{
+    height: 50px;
 }

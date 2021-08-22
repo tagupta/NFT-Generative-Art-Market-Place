@@ -20,10 +20,18 @@ body {
 }
 
 #threeButtons button{
-  width: 80%;
+  background-color: #e2efff;
   color: black;
-  font-family: system-ui;
+  
 }
+
+#threeButtons img{
+  height: 200px;
+  margin-bottom: 65px;
+  margin-top: 10px;
+}
+
+
 .padding{
   padding-bottom: 2rem;
 }

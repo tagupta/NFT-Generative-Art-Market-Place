@@ -22,3 +22,30 @@
         
     })
 }
+
+function listenMarketTransactionEvent(){
+    marketInstance.events.MarketTransaction().on('data',function(event){
+        var txnType = event.returnValues.TxType;
+        if(txnType == "Create offer"){
+            $('.alert p').html("Please check Market Place to see the offer.");
+            $('.alertBox').css('display','flex');
+            $('.sellKitty').addClass('disabled');
+            $('.cancelOffer').removeClass('disabled');
+        }
+        else if(txnType == "Remove offer"){
+            $('.alert p').html("This offer has been removed successfully.");
+            $('.alertBox').css('display','flex');
+            $('.sellKitty').removeClass('disabled');
+            $('.cancelOffer').addClass('disabled');
+        }
+        else if(txnType == "Buy"){
+            $('.alert p').html("Please check the catalogue to see the new member.");
+            $('.alertBox').css('display','flex');
+            $('.buyKitty').addClass('disabled');
+        }  
+
+    }).on('error',function(error, receipt){
+        console.log(error);
+        
+    })
+}

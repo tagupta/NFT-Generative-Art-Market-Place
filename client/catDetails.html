@@ -19,6 +19,8 @@
         <link rel="stylesheet" href="assets/css/catFace.css">
         <link rel="stylesheet" href="assets/css/catLowerBody.css">
         <link rel="stylesheet" href="assets/css/catUpperBody.css">
+        <link rel="stylesheet" href="assets/css/marketPlace.css">
+
       <script type="text/javascript"> 
        var params = new URLSearchParams(window.location.search);
        var action;
@@ -40,28 +42,33 @@
         <div class="header" align="center">
             <div class="container p-5">
                 <h2 class="menu-title"></h2>
-                <!-- <a href="breed.html">
-                    <button type="button" class="btn btn-danger breedBtn">Breed</button>
-                </a> -->
             </div>
         </div>
        
         
-        <div class="container p-5">
+        <div class="container p-3">
+            <div class="row justify-content-around alertBox" style="display: none;">
+                <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                    <p></p> 
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                </div>
+            </div>
             <div class="row" id="catsDiv">
             </div>  
         </div>
+        
         <script>
             // when page load create the catalog
             $(document).ready(function () {
              $('.menu-title').html(str);
             });
             setTimeout(()=>{
-                singleKitty(params.get('id'))
+                singleKitty(params.get('id'),action)
             },1000);
           </script>
-    
-
+       
     </body>
     <script src="assets/js/colors.js"></script>
     <script src="assets/js/catSettings.js"></script>
