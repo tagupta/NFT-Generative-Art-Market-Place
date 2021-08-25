@@ -24,7 +24,7 @@
 }
 .toast-header {
     color: black;
-    background-color: greenyellow;
+    background-color: #8f8f8f;
 }
 #breedBtn{
     margin-top: 20px;
@@ -39,16 +39,17 @@
     font-weight: 700;
 }
 .navbar-light{
-    background: aquamarine;
+    background:white;
+    color: black;
 }
 
 .nav-link {
     padding: 17px 55px;
-    margin-right: 25px;    
+    margin-right: 25px;   
+    
 }
 
-.nav-link b {
-    color:#000000;
+.nav-link strong {
     transition: 0.3s ease-in;
 }
 
@@ -75,6 +76,8 @@
 .menu-title{
     font-size: 250%;
     font-family: monospace;
+    color: white;
+    margin-bottom: 36px;
 }
 .catGroup { 
     margin-top: 120px;
@@ -84,9 +87,14 @@
 #canvas {
     position: absolute;
 }
-
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link{
+    background-color: #343a40;
+}
+a{
+    color: white;
+}
 .m-222 {
-   margin: 1.5rem!important;
+   margin: 2.5rem!important;
 }
 
 .banner {

@@ -31,7 +31,7 @@ $(document).ready(function () {
                                     <a class="nav-link" href="kFactory.html"><strong>K-Factory</strong></a>
                                 </li>
                                 
-                                <button type="button" class="btn btn-success nav-item" onclick="start()" style="margin: 0.5rem">${buttonTxt}</button>
+                                <button type="button" class="btn myBtnStyle nav-item" onclick="start()" style="margin: 0.5rem">${buttonTxt}</button>
                                 
                             </ul>
                         </div>

@@ -15,8 +15,8 @@ section{
 section h1{
     font-size: 500%;
     text-transform: uppercase;
-    /* color: white;
-    text-shadow: 1px 1px 15px #fff; */
+    color: white;
+    text-shadow: 1px 1px 15px #fff;
     font-family: monospace;
 }
 section h3{
@@ -64,7 +64,7 @@ section button{
 }
 .landingImg{
     height: 530px;
-    background-color: #FDD835;
+    background-color: rgb(4, 4, 65);
 }
 #pawPrint1{
     height: 50px;

@@ -1,5 +1,5 @@
 .parentBox{
-    background-color: #e2efff;
+    background-color: #8f8f8f;
     border-radius: 10px;
     padding-top: 21px;
     padding-bottom: 49px;
@@ -8,7 +8,8 @@
 }
 .parentBox img{
     height: 200px;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
+    margin-top: 30px;
 }
 #breedingStart{
     border-radius: 22px;
@@ -32,4 +33,7 @@
 .alertBox{
     margin-bottom: 20px;
     display: none;
+}
+.modal-header{
+    background: #8f8f8f;
 }

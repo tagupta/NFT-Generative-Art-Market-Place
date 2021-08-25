@@ -3,14 +3,14 @@
     padding: 0;
     box-sizing: inherit;
 }
+body {
+    background: rgb(8, 8, 8);
+}
 html {
     box-sizing: border-box;
     overflow-y: scroll;
 }
-body {
-    background: #DEFABB;
- 
-}
+
 
 .cat__head {
     position: relative;

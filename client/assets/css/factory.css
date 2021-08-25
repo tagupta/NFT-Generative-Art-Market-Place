@@ -1,21 +1,24 @@
 .catBox {
-    background-color: #e2efff;
+    
     padding-top: 48px;
+    background-color: #8f8f8f;
     border-radius: 10px;
     padding-left: 42px;
     padding-bottom: 100px;
 }
 
 .catBoxxx {
-    background-color: #e2efff;
+    
     border-radius: 10px;
+    background-color: #8f8f8f;
     padding-left: 42px;
     padding-bottom: 78px;
     /* padding-top: 20px; */
 }
 .catBoxModal {
-    background-color: #e2efff;
     border-radius: 10px;
+    background-color: #8f8f8f;
+
     padding-left: 42px;
     padding-bottom: 126px;
     padding-top: 20px;
@@ -25,8 +28,8 @@
     bottom: 0px;
 }
 .cattributes {
+    background-color: #8f8f8f;
     padding: 25px;
-    background-color: #ededed;
     border-radius: 10px;
 }
 

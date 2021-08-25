@@ -1,10 +1,12 @@
 {
   "name": "academy-kitties-template",
   "version": "1.0.0",
-  "description": "A starter template for bootcamp students building the cryptokitty clone.",
-  "main": "index.js",
+  "description": "",
+  "main": "truffle-config.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "repository": {
     "type": "git",
@@ -15,8 +17,12 @@
   "bugs": {
     "url": "https://github.com/tagupta/Crypto-kitties-clone/issues"
   },
-  "homepage": "https://github.com/tagupta/Crypto-kitties-clone#readme",
+  "homepage": "https://tagupta.github.io/Crypto-kitties-clone",
   "dependencies": {
-    "@truffle/hdwallet-provider": "^1.4.2"
+    "@truffle/hdwallet-provider": "^1.4.2",
+    "dotenv": "^10.0.0"
+  },
+  "devDependencies": {
+    "gh-pages": "^3.2.3"
   }
 }

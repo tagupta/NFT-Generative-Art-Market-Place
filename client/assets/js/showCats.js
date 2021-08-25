@@ -189,7 +189,7 @@ function renderingcatDetails(birthTime,gen,dna,id){
 function catDetails(id,gen,dna){
    var catDetails = 
    ` <div class="dropdown" style="padding-bottom: 50px;">
-         <img src="assets/img/detail_new.png" class="dropdown-toggle" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+         <img src="assets/img/detail.png" class="dropdown-toggle" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
          <div class="dropdown-menu" aria-labelledby="dropdownMenu">
          <div class="catInfo">
             <h3>KITTY DETAILS</h3>

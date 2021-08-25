@@ -10,7 +10,11 @@ body {
   letter-spacing: 1px; 
 }
 
-
+.myBtnStyle{
+  background-color: #3ef0b5;
+    border-color: #3ef0b5;
+    color: black;
+}
 .navbar-light {
   background: #ffffff;
 }
@@ -20,13 +24,14 @@ body {
 }
 
 #threeButtons button{
-  background-color: #e2efff;
   color: black;
+  background-color: #3ef0b5;
+  height: 300px;
   
 }
 
 #threeButtons img{
-  height: 200px;
+  height: 100px;
   margin-bottom: 65px;
   margin-top: 10px;
 }
