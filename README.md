@@ -25,3 +25,57 @@ This dApp was built using:
 4. After cloning the app in Visual Studio, run the python server by using command  ```python -m http.server 8000```.
 5. Access the dApp in the browser [here](http://localhost:8000/index.html).
 6. Now you're ready to use the dApp running on the Ethereum **Ropsten testnet**!
+
+## Usage
+**K-FACTORY**
+*****
+![Authentication](https://user-images.githubusercontent.com/45707143/135210266-ebe4876c-e733-4a30-8de2-2a20e7aa6720.gif)
+
+**BREEDING**
+*****
+
+**SELLING**
+*****
+https://user-images.githubusercontent.com/45707143/135210750-1b0baebf-d159-4721-a776-35428f0d5a27.mp4
+
+
+**BUYING**
+*****
+https://user-images.githubusercontent.com/45707143/135211111-399b4b53-e595-4feb-979e-c7d09f99ed91.mp4
+
+
+## Set up Local Development Environment
+**Install Project and [Truffle](https://www.trufflesuite.com/truffle)**
+
+```
+cd crypto-kitties
+npm install
+```
+```
+npm install truffle -g
+```
+**Set up Ganache**
+1. Download [Ganache](https://www.trufflesuite.com/ganache) to set up a local Ethereum blockchain.
+2. Start Ganache and create a new Ethereum workspace using the mnemonic phrase ```mnemonicDev``` found in truffle-config.js.
+3. Deploy the smart contracts of the project on Ganache using Truffle. Do so by runnning:
+``` 
+truffle migrate --network ganache --reset
+
+```
+4. The console will output the address of newly deployed contracts. In index.js replace the values of **contractAddress** and **marketPlace Address** accordingly.
+
+**Set up MetaMask**
+1. Install [MetaMask](https://metamask.io/) to interact with the dApp in the browser.
+2. Add your Ganache network as a custom RPC network to MetaMask and connect to it. The RPC URL is shown in Ganache. For the Chain ID use ```1337``` or what MetaMask suggests.
+3. Import two Ethereum accounts from Ganache to MetaMask by their private keys. The balances of these accounts should now be visible in MetaMask.
+
+**Set up FrontEnd**
+1. Start a localhost server for the frontend of the dApp:
+```
+cd client
+python3 -m http.server 8000
+```
+2. Access the dApp in the browser http://localhost:8000/
+
+## Enjoy
+Now you can use the dapp locally and use it for further development.
