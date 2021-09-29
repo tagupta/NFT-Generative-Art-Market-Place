@@ -28,6 +28,9 @@ This dApp was built using:
 
 ## Usage
 **K-FACTORY**
+
+Please click the link to watch the demonstration of Gen-0
+[Kitty Creation](https://drive.google.com/file/d/1GvYgYbbk7xf3wnu2bsUbfDgHd2wwewOL/view?usp=sharing)
 *****
 
 **BREEDING**
