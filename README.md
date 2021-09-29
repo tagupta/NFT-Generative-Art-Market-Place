@@ -29,21 +29,18 @@ This dApp was built using:
 ## Usage
 **K-FACTORY**
 *****
-![Authentication](https://user-images.githubusercontent.com/45707143/135210266-ebe4876c-e733-4a30-8de2-2a20e7aa6720.gif)
 
 **BREEDING**
-*****
 https://user-images.githubusercontent.com/45707143/135216615-6dc59d90-87df-4dcd-9164-5930d38b5a28.mp4
+*****
 
 **SELLING**
+https://user-images.githubusercontent.com/45707143/135216981-61f00795-f92e-4ec1-bd5b-b7b2affcdbd1.mp4
 *****
-https://user-images.githubusercontent.com/45707143/135210750-1b0baebf-d159-4721-a776-35428f0d5a27.mp4
-
 
 **BUYING**
+https://user-images.githubusercontent.com/45707143/135217127-2985c38b-2b52-4434-8c1f-cc4a31db1d7d.mp4
 *****
-https://user-images.githubusercontent.com/45707143/135211111-399b4b53-e595-4feb-979e-c7d09f99ed91.mp4
-
 
 ## Set up Local Development Environment
 **Install Project and [Truffle](https://www.trufflesuite.com/truffle)**
