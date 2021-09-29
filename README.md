@@ -31,14 +31,17 @@ This dApp was built using:
 *****
 
 **BREEDING**
+
 https://user-images.githubusercontent.com/45707143/135216615-6dc59d90-87df-4dcd-9164-5930d38b5a28.mp4
 *****
 
 **SELLING**
+
 https://user-images.githubusercontent.com/45707143/135216981-61f00795-f92e-4ec1-bd5b-b7b2affcdbd1.mp4
 *****
 
 **BUYING**
+
 https://user-images.githubusercontent.com/45707143/135217127-2985c38b-2b52-4434-8c1f-cc4a31db1d7d.mp4
 *****
 
